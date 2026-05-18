@@ -16,7 +16,6 @@
     "EntityCollisionContextAccessor",
     "EntityMixin",
     "InventoryAccessor",
-    "InventoryChangeTriggerTriggerInstanceMixin",
     "InventoryMixin",
     "ItemFrameMixin",
     "ItemMixin",

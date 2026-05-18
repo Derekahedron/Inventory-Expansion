@@ -20,44 +20,49 @@ import java.util.List;
 @Mixin(InventoryChangeTrigger.TriggerInstance.class)
 public class InventoryChangeTriggerTriggerInstanceMixin {
 
-    @Shadow
-    @Final
-    private ItemPredicate[] predicates;
-
-    /**
-     * Modifies the predicate list so all predicates also test container item contents
+    /*
+     * NOTE: This mixin has a significant performance hit due to the excessive load times for container items.
+     * It should be revisited after the 1.21 component changes.
      */
-    @ModifyVariable(
-            method = "matches",
-            at = @At("STORE"))
-    private List<ItemPredicate> modifyPredicateList(List<ItemPredicate> list) {
-        List<ItemPredicate> modified = new ObjectArrayList<>(list.size());
-        for (ItemPredicate predicate : list) {
-            modified.add(new ContainerItemItemPredicate(predicate));
-        }
-        return modified;
-    }
 
-    /**
-     * Modifies the item to be tested to a nested item that will pass the test
-     */
-    @ModifyArg(
-            method = "matches",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/advancements/critereon/ItemPredicate;matches(Lnet/minecraft/world/item/ItemStack;)Z"),
-            index = 0)
-    private ItemStack changeTestItem(ItemStack stack) {
-        ContainerItemContentsReader contents = ContainerItemBehaviors.getInsertableContents(stack)
-                .orElse(null);
-
-        if (contents != null && !contents.isEmpty()) {
-            for (ItemStack nestedStack : contents.getStacks()) {
-                if (predicates[0].matches(nestedStack)) {
-                    return nestedStack;
-                }
-            }
-        }
-        return stack;
-    }
+//    @Shadow
+//    @Final
+//    private ItemPredicate[] predicates;
+//
+//    /**
+//     * Modifies the predicate list so all predicates also test container item contents
+//     */
+//    @ModifyVariable(
+//            method = "matches",
+//            at = @At("STORE"))
+//    private List<ItemPredicate> modifyPredicateList(List<ItemPredicate> list) {
+//        List<ItemPredicate> modified = new ObjectArrayList<>(list.size());
+//        for (ItemPredicate predicate : list) {
+//            modified.add(new ContainerItemItemPredicate(predicate));
+//        }
+//        return modified;
+//    }
+//
+//    /**
+//     * Modifies the item to be tested to a nested item that will pass the test
+//     */
+//    @ModifyArg(
+//            method = "matches",
+//            at = @At(
+//                    value = "INVOKE",
+//                    target = "Lnet/minecraft/advancements/critereon/ItemPredicate;matches(Lnet/minecraft/world/item/ItemStack;)Z"),
+//            index = 0)
+//    private ItemStack changeTestItem(ItemStack stack) {
+//        ContainerItemContentsReader contents = ContainerItemBehaviors.getInsertableContents(stack)
+//                .orElse(null);
+//
+//        if (contents != null && !contents.isEmpty()) {
+//            for (ItemStack nestedStack : contents.getStacks()) {
+//                if (predicates[0].matches(nestedStack)) {
+//                    return nestedStack;
+//                }
+//            }
+//        }
+//        return stack;
+//    }
 }
