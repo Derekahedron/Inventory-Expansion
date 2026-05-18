@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:leather"
+    },
+    "-": {
+      "tag": "forge:string"
+    },
+    "X": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "pattern": [
+    " XX",
+    "-##",
+    " ##"
+  ],
+  "result": {
+    "item": "invexp:quiver"
+  },
+  "show_notification": true
+}

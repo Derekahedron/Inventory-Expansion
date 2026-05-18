@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:frogspawn",
+    "minecraft:turtle_egg",
+    "minecraft:sniffer_egg",
+    "minecraft:dragon_egg",
+    "minecraft:egg"
+  ]
+}

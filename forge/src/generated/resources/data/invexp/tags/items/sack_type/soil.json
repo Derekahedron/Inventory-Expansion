@@ -1,0 +1,16 @@
+{
+  "values": [
+    "minecraft:packed_mud",
+    "#minecraft:dirt",
+    "minecraft:dirt_path",
+    "minecraft:farmland",
+    "minecraft:clay",
+    "minecraft:gravel",
+    "#minecraft:sand",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:suspicious_sand",
+    "minecraft:suspicious_gravel",
+    "minecraft:clay_ball"
+  ]
+}

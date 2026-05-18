@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "item": "minecraft:bamboo_planks"
+    },
+    {
+      "item": "minecraft:bamboo_slab"
+    },
+    {
+      "item": "minecraft:bamboo_fence"
+    },
+    {
+      "item": "minecraft:bamboo_fence_gate"
+    }
+  ],
+  "priority": 10,
+  "sack_type": "invexp:bamboo"
+}

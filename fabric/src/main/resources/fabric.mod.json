@@ -1,0 +1,39 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Derekahedron/Inventory-Expansion",
+        "sources": "https://github.com/Derekahedron/Inventory-Expansion"
+    },
+    "license": "${license}",
+    "icon": "assets/${mod_id}/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+          "derekahedron.invexp.fabric.FabricInventoryExpansion"
+        ],
+        "client": [
+          "derekahedron.invexp.fabric.client.FabricInventoryExpansionClient"
+        ],
+        "fabric-datagen": [
+          "derekahedron.invexp.fabric.datagen.FabricInventoryExpansionDataGen"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=17"
+    }
+}
+  

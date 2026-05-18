@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "item": "minecraft:beehive"
+    },
+    {
+      "item": "minecraft:bee_nest"
+    }
+  ],
+  "predicate": {
+    "nbt": "{BlockEntityTag:{Bees:[{EntityData:{id:\"minecraft:bee\"}}]}}"
+  },
+  "priority": 10,
+  "sack_weight": 64
+}

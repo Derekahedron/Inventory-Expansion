@@ -1,0 +1,14 @@
+{
+  "type": "invexp:dye_bundle",
+  "category": "equipment",
+  "group": "bundle_dye",
+  "input": {
+    "tag": "invexp:dyeable_bundles"
+  },
+  "material": {
+    "tag": "c:light_gray_dyes"
+  },
+  "result": {
+    "item": "invexp:light_gray_bundle"
+  }
+}

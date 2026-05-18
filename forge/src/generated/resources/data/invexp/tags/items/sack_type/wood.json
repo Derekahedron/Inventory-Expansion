@@ -1,0 +1,20 @@
+{
+  "values": [
+    "minecraft:stick",
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "#minecraft:wooden_stairs",
+    "#minecraft:wooden_slabs",
+    "#minecraft:wooden_fences",
+    "#minecraft:fence_gates",
+    "minecraft:mangrove_roots",
+    "minecraft:ladder",
+    "minecraft:bookshelf",
+    "minecraft:chiseled_bookshelf",
+    "minecraft:chest",
+    "minecraft:barrel",
+    "minecraft:trapped_chest",
+    "minecraft:stick",
+    "minecraft:bowl"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "items": {
+    "item": "minecraft:moss_block"
+  },
+  "priority": 10,
+  "sack_type": "invexp:plant"
+}

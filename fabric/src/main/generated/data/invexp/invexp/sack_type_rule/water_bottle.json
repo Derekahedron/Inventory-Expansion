@@ -1,0 +1,10 @@
+{
+  "items": {
+    "item": "minecraft:potion"
+  },
+  "predicate": {
+    "potion": "minecraft:water"
+  },
+  "priority": 10,
+  "sack_type": "invexp:bottle"
+}

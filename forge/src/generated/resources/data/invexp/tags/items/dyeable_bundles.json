@@ -1,0 +1,21 @@
+{
+  "values": [
+    "minecraft:bundle",
+    "invexp:white_bundle",
+    "invexp:orange_bundle",
+    "invexp:magenta_bundle",
+    "invexp:light_blue_bundle",
+    "invexp:yellow_bundle",
+    "invexp:lime_bundle",
+    "invexp:pink_bundle",
+    "invexp:gray_bundle",
+    "invexp:light_gray_bundle",
+    "invexp:purple_bundle",
+    "invexp:cyan_bundle",
+    "invexp:blue_bundle",
+    "invexp:brown_bundle",
+    "invexp:green_bundle",
+    "invexp:red_bundle",
+    "invexp:black_bundle"
+  ]
+}

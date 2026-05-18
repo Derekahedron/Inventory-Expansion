@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "item": "minecraft:infested_stone"
+    },
+    {
+      "item": "minecraft:infested_cobblestone"
+    },
+    {
+      "item": "minecraft:infested_deepslate"
+    }
+  ],
+  "priority": 10,
+  "sack_type": "invexp:infested_stone"
+}
