@@ -1,7 +1,9 @@
 package derekahedron.invexp.fabric.client;
 
 import derekahedron.invexp.client.InventoryExpansionClient;
+import derekahedron.invexp.fabric.client.compat.TrinketsCompatClient;
 import derekahedron.invexp.fabric.platform.*;
+import derekahedron.invexp.platform.Services;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.Minecraft;
 
@@ -22,6 +24,8 @@ public class FabricInventoryExpansionClient implements ClientModInitializer {
         FabricItemColorRegistrar.init();
         FabricItemOverrideRegistrar.init();
         FabricScrollEventRegistrar.init();
+
+        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompatClient::init);
     }
 
     /**

@@ -3,9 +3,11 @@ package derekahedron.invexp.fabric;
 import derekahedron.invexp.InventoryExpansion;
 import derekahedron.invexp.block.cauldron.InvExpCauldronBehavior;
 import derekahedron.invexp.block.dispenser.InvExpDispenserBehavior;
+import derekahedron.invexp.fabric.compat.TrinketsCompat;
 import derekahedron.invexp.fabric.platform.FabricCreativeItemsRegistrar;
 import derekahedron.invexp.fabric.platform.FabricPacketRegistrar;
 import derekahedron.invexp.fabric.platform.FabricRegistryEventRegistrar;
+import derekahedron.invexp.platform.Services;
 import net.fabricmc.api.ModInitializer;
 
 /**
@@ -25,5 +27,7 @@ public class FabricInventoryExpansion implements ModInitializer {
         FabricPacketRegistrar.init();
         FabricRegistryEventRegistrar.init();
         FabricCreativeItemsRegistrar.init();
+
+        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompat::init);
     }
 }

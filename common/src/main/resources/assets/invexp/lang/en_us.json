@@ -295,5 +295,12 @@
   "tag.item.invexp.sack_weight.half": "Half Sack Weight",
   "tag.item.invexp.sack_weight.third": "Third Sack Weight",
   "tag.item.invexp.sack_weight.fourth": "Fourth Sack Weight",
-  "tag.item.invexp.sack_weight.fifth": "Fifth Sack Weight"
+  "tag.item.invexp.sack_weight.fifth": "Fifth Sack Weight",
+
+  "curios.identifier.sack": "Sack",
+  "curios.identifier.quiver": "Quiver",
+  "curios.identifier.bundle": "Bundle",
+  "trinkets.slot.extra1.sack": "Sack",
+  "trinkets.slot.chest.quiver": "Quiver",
+  "trinkets.slot.extra1.bundle": "Bundle"
 }

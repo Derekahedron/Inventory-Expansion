@@ -6,6 +6,7 @@ import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import derekahedron.invexp.containeritem.ContainerItemUsage;
 import derekahedron.invexp.entity.PlayerEntityDuck;
 import derekahedron.invexp.platform.Services;
+import derekahedron.invexp.util.ExtraInventoryRegistry;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlayerEntityDuck {
@@ -210,14 +213,16 @@ public abstract class PlayerMixin implements PlayerEntityDuck {
         Player self = (Player) (Object) this;
         Predicate<ItemStack> predicate = ((ProjectileWeaponItem) shootable.getItem()).getAllSupportedProjectiles();
 
-        for (int i = 0; i < self.getInventory().getContainerSize(); i++) {
-            ItemStack projectile = ShootableContents.getProjectileStack(
-                    self.getInventory().getItem(i), predicate);
+        Stream<ItemStack> items = Stream.of(
+                ExtraInventoryRegistry.getExtraInventory(self),
+                self.getInventory().items,
+                self.getInventory().armor,
+                self.getInventory().offhand).flatMap(Collection::stream);
 
-            if (!projectile.isEmpty()) {
-                cir.setReturnValue(Services.GAMEPLAY_HOOKS.getProjectile(self, shootable, projectile));
-                return;
-            }
-        }
+        items.map(stack -> ShootableContents.getProjectileStack(stack, predicate))
+                .filter(stack -> !stack.isEmpty())
+                .findFirst()
+                .ifPresent(projectile ->
+                        cir.setReturnValue(Services.GAMEPLAY_HOOKS.getProjectile(self, shootable, projectile)));
     }
 }

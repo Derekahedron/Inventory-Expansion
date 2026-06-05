@@ -5,9 +5,11 @@ import derekahedron.invexp.platform.services.*;
 import java.util.ServiceLoader;
 
 /**
- * Hold services used to provide compatibility between the forge and fabric.
+ * Holds services used to provide compatibility between different platforms.
  */
 public class Services {
+
+    public static final ICompatibilityHelper COMPATIBILITY_HELPER = load(ICompatibilityHelper.class);
 
     public static final IItemRegistrar ITEM_REGISTRAR = load(IItemRegistrar.class);
     public static final ISoundEventRegistrar SOUND_EVENT_REGISTRAR = load(ISoundEventRegistrar.class);

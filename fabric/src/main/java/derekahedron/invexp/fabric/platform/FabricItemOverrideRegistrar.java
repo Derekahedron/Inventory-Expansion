@@ -34,6 +34,5 @@ public class FabricItemOverrideRegistrar implements IItemOverrideRegistrar {
         }
     }
 
-    public record ItemOverrideRegistration(Supplier<Item> item, ResourceLocation resourceLocation, ClampedItemPropertyFunction itemPropertyFunction) {
-    }
+    public record ItemOverrideRegistration(Supplier<Item> item, ResourceLocation resourceLocation, ClampedItemPropertyFunction itemPropertyFunction) { }
 }

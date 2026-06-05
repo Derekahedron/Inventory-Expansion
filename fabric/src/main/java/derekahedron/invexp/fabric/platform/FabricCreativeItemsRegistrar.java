@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class FabricCreativeItemsRegistrar implements ICreativeItemsRegistrar {
+
     private static final Map<ResourceKey<CreativeModeTab>, ArrayList<PutAfter>> REGISTRATIONS = new HashMap<>();
 
     @Override

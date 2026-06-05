@@ -4,7 +4,9 @@ import derekahedron.invexp.InventoryExpansion;
 import derekahedron.invexp.block.cauldron.InvExpCauldronBehavior;
 import derekahedron.invexp.block.dispenser.InvExpDispenserBehavior;
 import derekahedron.invexp.forge.client.ForgeInventoryExpansionClient;
+import derekahedron.invexp.forge.compat.CuriosCompat;
 import derekahedron.invexp.forge.platform.*;
+import derekahedron.invexp.platform.Services;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,6 +41,8 @@ public class ForgeInventoryExpansion {
 
         InventoryExpansion.init();
 
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ForgeInventoryExpansionClient::new);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> new ForgeInventoryExpansionClient(modEventBus));
+
+        Services.COMPATIBILITY_HELPER.runIfPresent("curios", CuriosCompat::init);
     }
 }

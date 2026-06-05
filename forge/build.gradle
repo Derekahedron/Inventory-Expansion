@@ -56,14 +56,21 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    // Repo for Curios
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
-    implementation group: 'local.dependencies', name: 'invexpcompat', version: '1.0.0'
-    jarJar(group: 'local.dependencies', name: 'invexpcompat', version: '1.0.0')
+    implementation group: 'local.dependencies', name: 'invexpcompat', version: compat_version
+    jarJar(group: 'local.dependencies', name: 'invexpcompat', version: compat_version)
+
+    modImplementation "curse.maven:curios-309927:6418456"
 }
 
 jar {

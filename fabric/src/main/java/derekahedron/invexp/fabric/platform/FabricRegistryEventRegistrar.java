@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FabricRegistryEventRegistrar implements IRegistryEventRegistrar {
+
     private static final List<RegistryEventHandler> EVENT_HANDLERS = new ArrayList<>();
 
     @Override
@@ -17,6 +18,9 @@ public class FabricRegistryEventRegistrar implements IRegistryEventRegistrar {
         EVENT_HANDLERS.add(handler);
     }
 
+    /**
+     * Initializes registry loaded events.
+     */
     public static void init() {
         CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
             boolean shouldUpdateStaticData = FabricLoader.getInstance().getEnvironmentType() != EnvType.CLIENT

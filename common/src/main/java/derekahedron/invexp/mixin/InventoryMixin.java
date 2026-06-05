@@ -6,6 +6,7 @@ import derekahedron.invexp.containeritem.InsertableContents;
 import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import derekahedron.invexp.entity.PlayerEntityDuck;
 import derekahedron.invexp.containeritem.ContainerItemUsage;
+import derekahedron.invexp.util.ExtraInventoryRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -52,13 +54,14 @@ public abstract class InventoryMixin {
 
         // Gathers list of all container item contents in the inventory, starting with main hand/offhand, then
         // the rest of the inventory. Also sort by priority so quivers get inserted into first.
-        ItemStack mainHandStack = self.getItem(selected);
-        List<ContainerItemContentsWriter> contentsList = Stream.concat(
-                Stream.of(mainHandStack, self.getItem(40)),
-                self.items.stream().filter(itemStack -> itemStack != mainHandStack))
+        Stream<ItemStack> items = Stream.of(
+                List.of(self.getItem(selected), self.getItem(40)),
+                ExtraInventoryRegistry.getExtraInventory(self.player),
+                self.items).flatMap(Collection::stream);
+
+        List<ContainerItemContentsWriter> contentsList = items
                 .map(ContainerItemBehaviors::getInsertableContents)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
+                .filter(Optional::isPresent).map(Optional::get)
                 .filter(contents -> ((InsertableContents) contents).canInsert(stack))
                 .sorted(Comparator.comparing(contents -> -((InsertableContents) contents).getPickupPriority()))
                 .toList();
