@@ -8,12 +8,9 @@ import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
@@ -58,16 +55,21 @@ public abstract class QuiverRenderer {
     public static final Vector3f ARROW_OFFSET = new Vector3f(
             0.0F,
             1.0F,
-            2.0F).div(16.0F);
+            1.5F).div(16.0F);
     public static final Quaternionf ARROW_ROTATION =
             Axis.XP.rotationDegrees(-90.0F);
 
     // A list of offset and rotations for arrows that should be rendered in the quiver
     public static final List<Tuple<Vector3f, Quaternionf>> ARROW_POSITIONS = List.of(
-            // Random numbers as seeds so the arrows have consistent positions.
-            generateArrowPosition(0x4CAA3EC4DB67E6A5L),
-            generateArrowPosition(0x613C23189B3D7B50L),
-            generateArrowPosition(0xC043F4170A2713CDL));
+            new Tuple<>(
+                    new Vector3f(0.0103F, -0.00223F, -0.0237F),
+                    Axis.ZP.rotationDegrees(28.808F)),
+            new Tuple<>(
+                    new Vector3f(-0.0397F, -0.0211F, 0.0086F),
+                    Axis.ZP.rotationDegrees(5.691F)),
+            new Tuple<>(
+                    new Vector3f(0.0423F, -0.0196F, -0.0151F),
+                    Axis.ZP.rotationDegrees(43.434F)));
 
     public final QuiverModel model;
 
@@ -135,7 +137,6 @@ public abstract class QuiverRenderer {
                     }
 
                     renderArrows(
-                            selectedStack,
                             entity,
                             matrixStack,
                             renderTypeBuffer,
@@ -150,7 +151,6 @@ public abstract class QuiverRenderer {
     /**
      * Renders the arrows in a quiver.
      *
-     * @param selectedStack the selected arrow stack
      * @param entity the entity wearing the quiver
      * @param matrixStack the current matrices for rendering
      * @param renderTypeBuffer the render type buffer
@@ -159,20 +159,13 @@ public abstract class QuiverRenderer {
      * @param count how many arrows of the selected stack are in the quiver
      */
     public void renderArrows(
-            ItemStack selectedStack,
             LivingEntity entity,
             PoseStack matrixStack,
             MultiBufferSource renderTypeBuffer,
             int light,
             float partialTicks,
             int count) {
-        if (!(selectedStack.getItem() instanceof ArrowItem item)) return;
-        AbstractArrow arrow = item.createArrow(entity.level(), selectedStack, entity);
-
-        // Default to regular arrow if the arrow isn't rendered normally
-        if (!(Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(arrow) instanceof ArrowRenderer)) {
-            arrow = ((ArrowItem) Items.ARROW).createArrow(entity.level(), new ItemStack(Items.ARROW), entity);
-        }
+        AbstractArrow arrow = ((ArrowItem) Items.ARROW).createArrow(entity.level(), new ItemStack(Items.ARROW), entity);
 
         matrixStack.pushPose();
 
@@ -215,38 +208,6 @@ public abstract class QuiverRenderer {
                 item -> BuiltInRegistries.ITEM.getKey(item)
                         .withPrefix("textures/models/quiver/")
                         .withSuffix(".png"));
-    }
-
-    /**
-     * Randomly generates an arrow position and rotation based off of the seed.
-     *
-     * @param seed a seed to use to generate the random positioning
-     * @return a {@link Tuple} containing the position offset and rotation of the arrow
-     */
-    public static Tuple<Vector3f, Quaternionf> generateArrowPosition(long seed) {
-        RandomSource random = RandomSource.create(seed);
-        return new Tuple<>(
-                new Vector3f(
-                        Mth.lerp(splitFloat(random.nextFloat()), -1.0F, 1.0F),
-                        Mth.lerp(splitFloat(random.nextFloat()), -1.0F, 1.0F),
-                        Mth.lerp(random.nextFloat(), -0.5F, 0.5F)).div(16.0F),
-                Axis.ZP.rotationDegrees(Mth.lerp(random.nextFloat(), 0.0F, 90.0F)));
-    }
-
-    /**
-     * Splits a float from a range of <code>0</code>-<code>1</code> into the range of <code>0</code>-<code>0.25</code>
-     * and <code>0.75</code>-<code>1</code>. Used when making sure arrows aren't randomly placed bunched up
-     * in the center of the quiver.
-     *
-     * @param f the float to split
-     * @return the split up float value
-     */
-    public static float splitFloat(float f) {
-        if (f >= 0.5F) {
-            f += 1.0F;
-        }
-        f /= 2;
-        return f;
     }
 
     /**

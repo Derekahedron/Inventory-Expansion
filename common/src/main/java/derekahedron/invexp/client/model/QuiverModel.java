@@ -15,6 +15,11 @@ public class QuiverModel extends Model {
 
     public final ModelPart root;
 
+    /**
+     * Creates a new quiver model.
+     *
+     * @param root the root model part to build on
+     */
     public QuiverModel(ModelPart root) {
         super(RenderType::entityCutoutNoCull);
         this.root = root;
@@ -56,11 +61,11 @@ public class QuiverModel extends Model {
                         .texOffs(0, 0)
                         .addBox(
                                 -2.0F, -6.0F, 0.0F,
-                                4.0F, 12.0F, 4.0F)
+                                4.0F, 12.0F, 3.0F)
                         .texOffs(16, 0)
                         .addBox(
                                 -2.0F, -6.0F, 0.0F,
-                                4.0F, 12.0F, 4.0F,
+                                4.0F, 12.0F, 3.0F,
                                 new CubeDeformation(0.1F)),
                 PartPose.ZERO);
 

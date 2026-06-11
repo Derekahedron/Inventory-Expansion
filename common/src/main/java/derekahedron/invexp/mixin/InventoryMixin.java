@@ -19,10 +19,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 @Mixin(Inventory.class)
@@ -55,9 +55,11 @@ public abstract class InventoryMixin {
         // Gathers list of all container item contents in the inventory, starting with main hand/offhand, then
         // the rest of the inventory. Also sort by priority so quivers get inserted into first.
         Stream<ItemStack> items = Stream.of(
-                List.of(self.getItem(selected), self.getItem(40)),
+                Stream.of(self.getItem(selected), self.getItem(40)),
                 ExtraInventoryRegistry.getExtraInventory(self.player),
-                self.items).flatMap(Collection::stream);
+                self.items.stream()
+                        .filter(itemStack -> itemStack != self.getItem(selected))
+        ).flatMap(Function.identity());
 
         List<ContainerItemContentsWriter> contentsList = items
                 .map(ContainerItemBehaviors::getInsertableContents)

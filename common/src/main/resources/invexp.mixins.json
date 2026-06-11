@@ -45,6 +45,7 @@
     "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.MinecraftMixin",
+    "client.MouseHandlerMixin",
     "client.MultiPlayerGameModeMixin",
     "client.PlayerRendererMixin",
     "client.ScreenAccessor"

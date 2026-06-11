@@ -14,4 +14,6 @@ public class ClientServices {
     public static final IItemColorRegistrar ITEM_COLORS_REGISTRAR = Services.load(IItemColorRegistrar.class);
     public static final IAdditionalModelRegistrar ADDITIONAL_MODEL_REGISTRAR = Services.load(IAdditionalModelRegistrar.class);
     public static final IScrollEventRegistrar SCROLL_EVENT_REGISTRAR = Services.load(IScrollEventRegistrar.class);
+    public static final IKeyMappingRegistrar KEY_MAPPING_REGISTRAR = Services.load(IKeyMappingRegistrar.class);
+    public static final IRenderEventRegistrar RENDER_EVENT_REGISTRAR = Services.load(IRenderEventRegistrar.class);
 }

@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -215,9 +215,9 @@ public abstract class PlayerMixin implements PlayerEntityDuck {
 
         Stream<ItemStack> items = Stream.of(
                 ExtraInventoryRegistry.getExtraInventory(self),
-                self.getInventory().items,
-                self.getInventory().armor,
-                self.getInventory().offhand).flatMap(Collection::stream);
+                self.getInventory().items.stream(),
+                self.getInventory().armor.stream(),
+                self.getInventory().offhand.stream()).flatMap(Function.identity());
 
         items.map(stack -> ShootableContents.getProjectileStack(stack, predicate))
                 .filter(stack -> !stack.isEmpty())

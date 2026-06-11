@@ -23,6 +23,7 @@ public class FabricInventoryExpansionClient implements ClientModInitializer {
         FabricClientTooltipRegistrar.init();
         FabricItemColorRegistrar.init();
         FabricItemOverrideRegistrar.init();
+        FabricRenderEventRegistrar.init();
         FabricScrollEventRegistrar.init();
 
         Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompatClient::init);

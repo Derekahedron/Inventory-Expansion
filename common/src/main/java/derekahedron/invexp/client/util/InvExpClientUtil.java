@@ -1,5 +1,6 @@
 package derekahedron.invexp.client.util;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -33,5 +34,19 @@ public class InvExpClientUtil {
                     .findFirst().orElse(null);
         }
         return slot;
+    }
+
+    /**
+     * Generates a count label for a given item count. If the count is over the provided maximum,
+     * it is rendered in yellow.
+     *
+     * @param count the count of the item
+     * @param maxCount the max count to cap this at
+     * @return a string formatted to display the count
+     */
+    public static String getCountLabel(int count, int maxCount) {
+        return count <= maxCount
+                ? String.valueOf(count)
+                : ChatFormatting.YELLOW + String.valueOf(maxCount);
     }
 }

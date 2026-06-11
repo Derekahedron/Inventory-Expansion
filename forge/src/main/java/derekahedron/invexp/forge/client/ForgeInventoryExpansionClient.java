@@ -23,6 +23,8 @@ public class ForgeInventoryExpansionClient {
         modEventBus.addListener(ForgeItemColorRegistrar::init);
         modEventBus.addListener(ForgeAdditionalModelRegistrar::init);
         modEventBus.addListener(ForgeModelLayerRegistrar::init);
+        modEventBus.addListener(ForgeKeyMappingRegistrar::init);
+        MinecraftForge.EVENT_BUS.addListener(ForgeRenderEventRegistrar::init);
         MinecraftForge.EVENT_BUS.addListener(ForgeScrollEventRegistrar::init);
 
         InventoryExpansionClient.init();

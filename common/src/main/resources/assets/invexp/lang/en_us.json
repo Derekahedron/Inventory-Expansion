@@ -15,6 +15,9 @@
   "item.invexp.sack.description.type.many.last_conjunction": "%1$s, and %2$s",
   "item.invexp.sack.data_tooltip": "Sack Data:",
 
+  "key.categories.invexp": "Inventory Expansion",
+  "key.invexp.quick_swap": "Quick Swap Selected Item",
+
   "item.invexp.quiver": "Quiver",
   "item.invexp.quiver.full": "Full",
   "item.invexp.quiver.empty": "Empty",

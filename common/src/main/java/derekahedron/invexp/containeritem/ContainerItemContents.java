@@ -4,6 +4,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * The contents of a container item. Adds helpers and defines methods needed for the container item contents.
@@ -39,8 +40,22 @@ public interface ContainerItemContents {
      * @return the selected stack of the container item; <code>ItemStack.EMPTY</code> if the contents are empty
      */
     default ItemStack getSelectedStack() {
-        if (isEmpty()) return ItemStack.EMPTY;
-        return getStacks().get(clampIndex(getSelectedIndex()));
+        return getSelectedStack((stack) -> true);
+    }
+
+    /**
+     * Gets the selected stack with a given predicate.
+     *
+     * @param predicate the predicate to search under
+     * @return the closest selected stack that matches the predicate; <code>ItemStack.EMPTY</code> if there is none
+     */
+    default ItemStack getSelectedStack(Predicate<ItemStack> predicate) {
+        int index = indexOf(predicate, getSelectedIndex());
+        if (index == -1) {
+            return ItemStack.EMPTY;
+        } else {
+            return getStacks().get(index);
+        }
     }
 
     /**
@@ -66,19 +81,32 @@ public interface ContainerItemContents {
      * @return the index that the next stack is at; <code>-1</code> if there is none
      */
     default int indexOf(ItemStack stack, int startingIndex) {
+        return indexOf((nestedStack) -> ItemStack.isSameItemSameTags(stack, nestedStack), startingIndex);
+    }
+
+    /**
+     * Searches the contents for a stack matching a given predicate, starting from a given index.
+     * Can be used to get the "next" index in the contents, like if we want to get an arrow from the quiver and it
+     * needs to match a predicate
+     *
+     * @param predicate the predicate to search for a stack that matches
+     * @param startingIndex the index to start the search at
+     * @return the index that the next stack is at; <code>-1</code> if there is none
+     */
+    default int indexOf(Predicate<ItemStack> predicate, int startingIndex) {
         if (isEmpty()) return -1;
         startingIndex = clampIndex(startingIndex);
 
         // First check stacks after starting index
         for (int i = startingIndex; i < getStacks().size(); i++) {
-            if (ItemStack.isSameItemSameTags(stack, getStacks().get(i))) {
+            if (predicate.test(getStacks().get(i))) {
                 return i;
             }
         }
 
         // Next check stacks before starting index
         for (int i = startingIndex - 1; i >= 0; i--) {
-            if (ItemStack.isSameItemSameTags(stack, getStacks().get(i))) {
+            if (predicate.test(getStacks().get(i))) {
                 return i;
             }
         }

@@ -1,6 +1,8 @@
 package derekahedron.invexp.client;
 
+import derekahedron.invexp.client.gui.InvExpRenderEvents;
 import derekahedron.invexp.client.gui.tooltip.InvExpClientTooltips;
+import derekahedron.invexp.client.util.InvExpKeyMappings;
 import derekahedron.invexp.client.gui.InvExpScrollEvents;
 import derekahedron.invexp.client.model.InvExpModelLayers;
 import derekahedron.invexp.client.render.InvExpAdditionalModels;
@@ -21,6 +23,8 @@ public class InventoryExpansionClient {
         InvExpClientTooltips.init();
         InvExpAdditionalModels.init();
         InvExpModelLayers.init();
+        InvExpRenderEvents.init();
         InvExpScrollEvents.init();
+        InvExpKeyMappings.init();
     }
 }

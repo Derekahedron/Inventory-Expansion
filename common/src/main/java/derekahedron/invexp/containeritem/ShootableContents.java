@@ -22,14 +22,13 @@ public interface ShootableContents {
         if (contents.isEmpty()) return Optional.empty();
 
         // Make sure the selected stack matches the predicate
-        ItemStack selectedStack = contents.getSelectedStack();
-        if (!predicate.test(selectedStack)) return Optional.empty();
-        ItemStack ammoStack = selectedStack;
+        ItemStack ammoStack = contents.getSelectedStack(predicate);
+        if (ammoStack.isEmpty()) return Optional.empty();
 
         for (int i = contents.getStacks().size() - 1; i >= 0; i--) {
             ItemStack nestedStack = contents.getStacks().get(i);
 
-            if (ItemStack.isSameItemSameTags(selectedStack, nestedStack)) {
+            if (ItemStack.isSameItemSameTags(ammoStack, nestedStack)) {
                 ammoStack = nestedStack;
                 break;
             }

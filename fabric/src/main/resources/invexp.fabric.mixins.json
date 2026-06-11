@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "derekahedron.invexp.mixin",
+  "package": "derekahedron.invexp.fabric.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
+    "client.GuiMixin"
   ],
   "server": [
   ],

@@ -17,11 +17,17 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Vector2i;
 
+/**
+ * Holds callbacks for scroll events for Inventory Expansion.
+ */
 @SuppressWarnings("resource")
 public class InvExpScrollEvents {
 
     public static final Scroller scroller = new Scroller();
 
+    /**
+     * Registers all scroll events.
+     */
     public static void init() {
         ClientServices.SCROLL_EVENT_REGISTRAR.register((screen, mouseX, mouseY, scrollDelta) -> {
             Minecraft minecraft = ((ScreenAccessor) screen).invexp$getMinecraft();

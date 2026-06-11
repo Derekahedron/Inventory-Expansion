@@ -1,10 +1,10 @@
 package derekahedron.invexp.mixin.client;
 
-import derekahedron.invexp.client.util.OpenItemTextures;
+import derekahedron.invexp.client.util.*;
+import derekahedron.invexp.containeritem.ContainerItemContentsSelector;
 import derekahedron.invexp.containeritem.UsableContents;
 import derekahedron.invexp.item.sack.SackContentsWriter;
 import derekahedron.invexp.item.sack.SackContentsReader;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
@@ -18,10 +18,12 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings("ModifyVariableMayUseName")
 @Mixin(Gui.class)
 public class GuiMixin {
 
@@ -120,22 +122,47 @@ public class GuiMixin {
         // Do not render for counts 1 and below
         if (count <= 1) return;
 
-        // If count surpasses max count, use max count but render as yellow
-        String countLabel = count <= maxCount
-                ? String.valueOf(count)
-                : ChatFormatting.YELLOW + String.valueOf(maxCount);
-
         // Render count
-        Font renderer = minecraft.font;
+        String countLabel = InvExpClientUtil.getCountLabel(count, maxCount);
+        Font font = minecraft.font;
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0.0D, 0.0D, 200.0F);
         guiGraphics.drawString(
-                renderer,
+                font,
                 countLabel,
-                x + 19 - 2 - renderer.width(countLabel),
+                x + 19 - 2 - font.width(countLabel),
                 y,
                 0xFFFFFF,
                 true);
         guiGraphics.pose().popPose();
+    }
+
+    /**
+     * Updates the tracked variables to determine when a container item is being scrolled.
+     */
+    @Inject(
+            method = "tick()V",
+            at = @At("HEAD"))
+    private void updateVars(CallbackInfo ci) {
+        QuickSwapHandler.buttonPressed = InvExpKeyMappings.QUICK_SWAP.isDown();
+
+        if (!QuickSwapHandler.buttonPressed) {
+            QuickSwapHandler.blockScrolling = false;
+        }
+    }
+
+    /**
+     * Updates the hover stack to that of the stack being swapped in the container item.
+     */
+    @ModifyVariable(
+            method = "tick()V",
+            at = @At("STORE"),
+            ordinal = 0)
+    private ItemStack getSwappedHoverStack(ItemStack itemstack) {
+        if (!QuickSwapHandler.isActive(minecraft.player)) return itemstack;
+
+        return ContainerItemContentsSelector.getSelector(minecraft.player)
+                .map(ContainerItemContentsSelector::getSelectedStack)
+                .orElse(itemstack);
     }
 }
