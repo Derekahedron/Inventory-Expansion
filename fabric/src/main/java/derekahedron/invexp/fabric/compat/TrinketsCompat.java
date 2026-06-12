@@ -1,47 +1,60 @@
 package derekahedron.invexp.fabric.compat;
 
-import derekahedron.invexp.util.ExtraInventoryRegistry;
+import derekahedron.invexp.fabric.client.compat.TrinketsPacketHandler;
+import derekahedron.invexp.platform.Services;
+import derekahedron.invexp.util.ModdedInventoriesEvent;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.world.item.ItemStack;
 
+import java.util.Collection;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Entrypoint for general Trinkets compatibility.
  */
 public class TrinketsCompat {
 
-    public static final String QUIVER_SLOT_GROUP = "chest";
-    public static final String QUIVER_SLOT_NAME = "quiver";
-
     /**
      * Initializes Trinkets.
      */
     public static void init() {
         // Registers the trinkets inventory for inserting items into container items
-        ExtraInventoryRegistry.registerExtraInventory(entity -> TrinketsApi.getTrinketComponent(entity)
+        ModdedInventoriesEvent.register(player -> TrinketsApi.getTrinketComponent(player)
                 .stream()
                 .map(TrinketComponent::getInventory)
-                .flatMap(inventory -> Stream.concat(
-                        // First get the quiver slot so it has priority
-                        Optional.ofNullable(inventory.get(QUIVER_SLOT_GROUP))
-                                .stream()
-                                .flatMap(group ->
-                                        Optional.ofNullable(group.get(QUIVER_SLOT_NAME)).stream()),
-                        // Then get the remaining inventory
-                        inventory.entrySet().stream()
-                                .flatMap(groupEntry -> {
-                                    boolean inQuiverGroup = groupEntry.getKey().equals(QUIVER_SLOT_GROUP);
+                .map(Map::entrySet)
+                .flatMap(Collection::stream)
+                .flatMap(groupEntry -> groupEntry.getValue().entrySet().stream()
+                        .flatMap(slotEntry -> IntStream.range(0, slotEntry.getValue().getContainerSize())
+                                .mapToObj(index -> new ModdedInventoriesEvent.SelectedIndexSlotHandler() {
+                                    @Override
+                                    public ItemStack getStack() {
+                                        return slotEntry.getValue().getItem(index);
+                                    }
 
-                                    return groupEntry.getValue().entrySet().stream()
-                                            .filter(slotEntry -> !inQuiverGroup
-                                                    || !slotEntry.getKey().equals(QUIVER_SLOT_NAME))
-                                            .map(Map.Entry::getValue);
-                                }))
-                        .flatMap(inv -> IntStream.range(0, inv.getContainerSize())
-                                .mapToObj(inv::getItem))));
+                                    @Override
+                                    public void setSelectedIndex(int selectedIndex) {
+                                        Services.NETWORK_HANDLER.sendC2S(new SetTrinketSelectedIndexPacket(
+                                                groupEntry.getKey(),
+                                                slotEntry.getKey(),
+                                                index,
+                                                selectedIndex));
+                                    }
+                                }))));
+
+        Services.PACKET_REGISTRAR.registerC2S(
+                SetTrinketSelectedIndexPacket.ID,
+                SetTrinketSelectedIndexPacket.class,
+                SetTrinketSelectedIndexPacket::encode,
+                SetTrinketSelectedIndexPacket::new,
+                SetTrinketSelectedIndexPacket::handle);
+        Services.PACKET_REGISTRAR.registerS2C(
+                SetTrinketSlotPacket.ID,
+                SetTrinketSlotPacket.class,
+                SetTrinketSlotPacket::encode,
+                SetTrinketSlotPacket::new,
+                TrinketsPacketHandler::handle);
     }
 }

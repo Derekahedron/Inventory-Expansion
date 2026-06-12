@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -39,17 +38,20 @@ public abstract class QuiverRenderer {
     public static final Vector3f BACK_OFFSET = new Vector3f(
             0.0F,
             5.0F,
-            2.0F).div(16.0F);
+            5.0F).div(16.0F);
     public static final Quaternionf BACK_ROTATION =
-            Axis.ZP.rotationDegrees(30.0F);
+            Axis.YP.rotationDegrees(180.0F)
+                    .rotateLocalZ((float) Math.toRadians(30.0F));
 
     // Offset and rotation for the quiver when on the waist
     public static final Vector3f WAIST_OFFSET = new Vector3f(
             -1.0F,
             12.0F,
-            2.0F).div(16.0F);
+            5.0F).div(16.0F);
     public static final Quaternionf WAIST_ROTATION =
-            Axis.ZP.rotationDegrees(85.0F).rotateLocalX((float) Math.toRadians(-1.0F));
+            Axis.YP.rotationDegrees(180.0F)
+                    .rotateLocalZ((float) Math.toRadians(85.0F))
+                    .rotateLocalX((float) Math.toRadians(-1.0F));
 
     // Offset and rotation for arrows in the quiver
     public static final Vector3f ARROW_OFFSET = new Vector3f(
@@ -59,17 +61,10 @@ public abstract class QuiverRenderer {
     public static final Quaternionf ARROW_ROTATION =
             Axis.XP.rotationDegrees(-90.0F);
 
-    // A list of offset and rotations for arrows that should be rendered in the quiver
-    public static final List<Tuple<Vector3f, Quaternionf>> ARROW_POSITIONS = List.of(
-            new Tuple<>(
-                    new Vector3f(0.0103F, -0.00223F, -0.0237F),
-                    Axis.ZP.rotationDegrees(28.808F)),
-            new Tuple<>(
-                    new Vector3f(-0.0397F, -0.0211F, 0.0086F),
-                    Axis.ZP.rotationDegrees(5.691F)),
-            new Tuple<>(
-                    new Vector3f(0.0423F, -0.0196F, -0.0151F),
-                    Axis.ZP.rotationDegrees(43.434F)));
+    // A list of offsets for arrows that should be rendered in the quiver
+    public static final List<Vector3f> ARROW_POSITIONS = List.of(
+            new Vector3f(-0.67F, 0, 0).div(16.0F),
+            new Vector3f(0.67F, 0.0F, 0.0F).div(16.0F));
 
     public final QuiverModel model;
 
@@ -126,24 +121,12 @@ public abstract class QuiverRenderer {
         // Render all the arrows in the quiver
         ContainerItemBehaviors.getContents(stack)
                 .filter(contents -> !contents.isEmpty())
-                .ifPresent(contents -> {
-                    ItemStack selectedStack = contents.getSelectedStack();
-                    int count = 0;
-
-                    for (ItemStack nestedStack : contents.getStacks()) {
-                        if (ItemStack.isSameItemSameTags(selectedStack, nestedStack)) {
-                            count += nestedStack.getCount();
-                        }
-                    }
-
-                    renderArrows(
-                            entity,
-                            matrixStack,
-                            renderTypeBuffer,
-                            light,
-                            partialTicks,
-                            count);
-                });
+                .ifPresent(contents -> renderArrows(
+                        entity,
+                        matrixStack,
+                        renderTypeBuffer,
+                        light,
+                        partialTicks));
 
         matrixStack.popPose();
     }
@@ -156,31 +139,22 @@ public abstract class QuiverRenderer {
      * @param renderTypeBuffer the render type buffer
      * @param light an <code>int</code> that describes the lighting on the quiver
      * @param partialTicks a <code>float</code> that holds how long it's been since the last tick
-     * @param count how many arrows of the selected stack are in the quiver
      */
     public void renderArrows(
             LivingEntity entity,
             PoseStack matrixStack,
             MultiBufferSource renderTypeBuffer,
             int light,
-            float partialTicks,
-            int count) {
+            float partialTicks) {
         AbstractArrow arrow = ((ArrowItem) Items.ARROW).createArrow(entity.level(), new ItemStack(Items.ARROW), entity);
 
         matrixStack.pushPose();
-
         matrixStack.translate(ARROW_OFFSET.x, ARROW_OFFSET.y, ARROW_OFFSET.z);
         matrixStack.mulPose(ARROW_ROTATION);
 
-        int numArrows = Math.min(getRenderAmount(count), ARROW_POSITIONS.size());
-
-        for (int i = 0; i < numArrows; i++) {
+        for (Vector3f position : ARROW_POSITIONS) {
             matrixStack.pushPose();
-            Vector3f offset = ARROW_POSITIONS.get(i).getA();
-            Quaternionf rotation = ARROW_POSITIONS.get(i).getB();
-
-            matrixStack.translate(offset.x, offset.y, offset.z);
-            matrixStack.mulPose(rotation);
+            matrixStack.translate(position.x, position.y, position.z);
 
             Minecraft.getInstance().getEntityRenderDispatcher().render(
                     arrow,
@@ -208,21 +182,5 @@ public abstract class QuiverRenderer {
                 item -> BuiltInRegistries.ITEM.getKey(item)
                         .withPrefix("textures/models/quiver/")
                         .withSuffix(".png"));
-    }
-
-    /**
-     * Calculates how many arrows should be rendered in the quiver based on the amount of arrows in the quiver.
-     *
-     * @param count how many arrows are in the quiver
-     * @return how many arrows should be rendered in the quiver
-     */
-    public static int getRenderAmount(int count) {
-        if (count > 16) {
-            return 3;
-        } else if (count > 4) {
-            return 2;
-        } else {
-            return 1;
-        }
     }
 }

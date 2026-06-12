@@ -8,8 +8,6 @@ import derekahedron.invexp.item.bundle.BundleContentsWriter;
 import derekahedron.invexp.item.sack.SackContentsWriter;
 import derekahedron.invexp.item.sack.SackContentsReader;
 import derekahedron.invexp.item.tooltip.StickyTooltipComponent;
-import derekahedron.invexp.network.SetSelectedIndexPacket;
-import derekahedron.invexp.platform.Services;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -298,20 +296,16 @@ public abstract class AbstractContainerScreenMixin {
         AbstractContainerScreen<?> self = (AbstractContainerScreen<?>) (Object) this;
         Minecraft minecraft = ((ScreenAccessor) self).invexp$getMinecraft();
 
-        if (minecraft == null) return;
+        if (minecraft == null || minecraft.player == null) return;
 
         if (invexp$hoveredBundleSlot != null) {
             BundleContentsWriter contents = BundleContentsWriter.of(invexp$hoveredBundleSlot.getItem());
 
-            if (contents != null && !contents.isEmpty() && contents.getSelectedIndex() != -1) {
+            if (contents != null
+                    && !contents.isEmpty()
+                    && contents.getSelectedIndex() != -1) {
                 contents.setSelectedIndex(-1);
-                Slot trueSlot = InvExpClientUtil.getTrueSlot(
-                        invexp$hoveredBundleSlot,
-                        minecraft.player);
-
-                if (trueSlot != null) {
-                    Services.NETWORK_HANDLER.send(new SetSelectedIndexPacket(trueSlot.index, -1));
-                }
+                InvExpClientUtil.getHandler(invexp$hoveredBundleSlot, minecraft.player).setSelectedIndex(-1);
             }
         }
 

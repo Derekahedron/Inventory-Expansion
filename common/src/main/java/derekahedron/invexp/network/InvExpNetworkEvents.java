@@ -17,11 +17,5 @@ public class InvExpNetworkEvents {
                 SetSelectedIndexPacket::encode,
                 SetSelectedIndexPacket::new,
                 SetSelectedIndexPacket::handle);
-        Services.PACKET_REGISTRAR.registerC2S(
-                QuickSwapSelectedIndexPacket.ID,
-                QuickSwapSelectedIndexPacket.class,
-                QuickSwapSelectedIndexPacket::encode,
-                QuickSwapSelectedIndexPacket::new,
-                QuickSwapSelectedIndexPacket::handle);
     }
 }

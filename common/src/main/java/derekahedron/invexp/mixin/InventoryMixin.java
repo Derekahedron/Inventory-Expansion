@@ -6,7 +6,7 @@ import derekahedron.invexp.containeritem.InsertableContents;
 import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import derekahedron.invexp.entity.PlayerEntityDuck;
 import derekahedron.invexp.containeritem.ContainerItemUsage;
-import derekahedron.invexp.util.ExtraInventoryRegistry;
+import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -56,7 +56,7 @@ public abstract class InventoryMixin {
         // the rest of the inventory. Also sort by priority so quivers get inserted into first.
         Stream<ItemStack> items = Stream.of(
                 Stream.of(self.getItem(selected), self.getItem(40)),
-                ExtraInventoryRegistry.getExtraInventory(self.player),
+                ModdedInventoriesEvent.getItemStacks(self.player),
                 self.items.stream()
                         .filter(itemStack -> itemStack != self.getItem(selected))
         ).flatMap(Function.identity());

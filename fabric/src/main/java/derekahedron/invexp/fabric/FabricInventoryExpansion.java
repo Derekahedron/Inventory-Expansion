@@ -21,13 +21,12 @@ public class FabricInventoryExpansion implements ModInitializer {
     @Override
     public void onInitialize() {
         InventoryExpansion.init();
+        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompat::init);
 
         InvExpCauldronBehavior.init();
         InvExpDispenserBehavior.init();
         FabricPacketRegistrar.init();
         FabricRegistryEventRegistrar.init();
         FabricCreativeItemsRegistrar.init();
-
-        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompat::init);
     }
 }

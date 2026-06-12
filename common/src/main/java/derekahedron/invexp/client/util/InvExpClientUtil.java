@@ -1,12 +1,13 @@
 package derekahedron.invexp.client.util;
 
+import derekahedron.invexp.network.SetSelectedIndexPacket;
+import derekahedron.invexp.platform.Services;
+import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-
-import javax.annotation.Nullable;
 
 /**
  * Contains client-only utility methods for Inventory Expansion.
@@ -14,26 +15,45 @@ import javax.annotation.Nullable;
 public class InvExpClientUtil {
 
     /**
-     * Finds the true {@link Slot} to use for network events. The creative inventory uses its own slots,
-     * so we need to adjust for this when using slot ids
+     * Gets the selected index handler for a given slot and a given player.
      *
-     * @param slot the original slot
-     * @param player the {@link Player} who's inventory is open
-     * @return the true slot to use for syncing
+     * @param slot the slot to get the handler for
+     * @param player the player to get the handler for
+     * @return a slot handler for setting the selected index of the given slot
      */
-    @Nullable
-    public static Slot getTrueSlot(Slot slot, @Nullable Player player) {
-        if (player == null) return null;
+    public static ModdedInventoriesEvent.SelectedIndexSlotHandler getHandler(Slot slot, Player player) {
+        ItemStack stack = slot.getItem();
+        ModdedInventoriesEvent.SelectedIndexSlotHandler handler = ModdedInventoriesEvent.getHandlers(player)
+                .filter(h -> h.getStack() == stack)
+                .findFirst()
+                .orElse(null);
 
-        // Creative screens do not have slot ids that are synced, so we must find the corresponding slot
-        // in the creative inventory
+        if (handler != null) return handler;
+
+        int slotId;
+        // The creative menu has slots that are desynced from the inventory menu, so we have to search the basic
+        // inventory menu instead.
         if (player.containerMenu instanceof CreativeModeInventoryScreen.ItemPickerMenu) {
-            ItemStack stack = slot.getItem();
-            return player.inventoryMenu.slots.stream()
+            slotId = player.inventoryMenu.slots.stream()
                     .filter(s -> s.getItem() == stack)
-                    .findFirst().orElse(null);
+                    .map(s -> s.index)
+                    .findFirst()
+                    .orElse(slot.index);
+        } else {
+            slotId = slot.index;
         }
-        return slot;
+
+        return new ModdedInventoriesEvent.SelectedIndexSlotHandler() {
+            @Override
+            public ItemStack getStack() {
+                return stack;
+            }
+
+            @Override
+            public void setSelectedIndex(int selectedIndex) {
+                Services.NETWORK_HANDLER.sendC2S(new SetSelectedIndexPacket(slotId, selectedIndex));
+            }
+        };
     }
 
     /**

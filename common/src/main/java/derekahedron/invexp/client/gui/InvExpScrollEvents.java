@@ -6,8 +6,6 @@ import derekahedron.invexp.client.util.Scroller;
 import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import derekahedron.invexp.mixin.client.AbstractContainerScreenAccessor;
 import derekahedron.invexp.mixin.client.ScreenAccessor;
-import derekahedron.invexp.network.SetSelectedIndexPacket;
-import derekahedron.invexp.platform.Services;
 import derekahedron.invexp.containeritem.ContainerItemContentsWriter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -68,11 +66,6 @@ public class InvExpScrollEvents {
                     contents.getStacks().size());
             if (newSelectedIndex == contents.getSelectedIndex()) return false;
 
-            // Creative screens do not have slot ids that are synced, so we must find the corresponding slot
-            // in the creative inventory
-            slot = InvExpClientUtil.getTrueSlot(slot, player);
-            if (slot == null) return true;
-
             // If you can scroll, set index and send packet to server
             if (ContainerItemBehaviors.getInsertableContents(stack).isPresent()) {
 
@@ -85,7 +78,7 @@ public class InvExpScrollEvents {
             }
 
             contents.setSelectedIndex(newSelectedIndex);
-            Services.NETWORK_HANDLER.send(new SetSelectedIndexPacket(slot.index, newSelectedIndex));
+            InvExpClientUtil.getHandler(slot, player).setSelectedIndex(newSelectedIndex);
             return false;
         });
     }

@@ -8,7 +8,6 @@ import derekahedron.invexp.util.InvExpUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public record SetSelectedIndexPacket(int slotId, int selectedIndex) implements NetworkPacket {
@@ -24,16 +23,22 @@ public record SetSelectedIndexPacket(int slotId, int selectedIndex) implements N
         return ID;
     }
 
+    @Override
     public void encode(FriendlyByteBuf buf) {
         buf.writeInt(slotId);
         buf.writeInt(selectedIndex);
     }
 
+    /**
+     * Handles the selected index packet that sets the selected index for a given players
+     * container item.
+     *
+     * @param context the packet context containing the sending player
+     */
     public void handle(IPacketRegistrar.C2SPacketContext context) {
         ServerPlayer sender = context.player();
-        Player player = context.player();
 
-        if (player == null) {
+        if (sender == null) {
             InventoryExpansion.LOGGER.debug(
                     "Received Set Selected Index packet with no sender!");
             return;
@@ -65,6 +70,5 @@ public record SetSelectedIndexPacket(int slotId, int selectedIndex) implements N
 
         contents.setSelectedIndex(selectedIndex);
         sender.containerMenu.setRemoteSlot(slotId, stack);
-        InvExpUtil.onContentChanged(context.player());
     }
 }

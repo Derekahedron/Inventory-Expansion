@@ -6,7 +6,7 @@ import derekahedron.invexp.containeritem.ContainerItemBehaviors;
 import derekahedron.invexp.containeritem.ContainerItemUsage;
 import derekahedron.invexp.entity.PlayerEntityDuck;
 import derekahedron.invexp.platform.Services;
-import derekahedron.invexp.util.ExtraInventoryRegistry;
+import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -214,7 +214,7 @@ public abstract class PlayerMixin implements PlayerEntityDuck {
         Predicate<ItemStack> predicate = ((ProjectileWeaponItem) shootable.getItem()).getAllSupportedProjectiles();
 
         Stream<ItemStack> items = Stream.of(
-                ExtraInventoryRegistry.getExtraInventory(self),
+                ModdedInventoriesEvent.getItemStacks(self),
                 self.getInventory().items.stream(),
                 self.getInventory().armor.stream(),
                 self.getInventory().offhand.stream()).flatMap(Function.identity());

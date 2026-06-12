@@ -18,6 +18,7 @@ public class FabricInventoryExpansionClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         InventoryExpansionClient.init();
+        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompatClient::init);
 
         FabricAdditionalModelRegistrar.init();
         FabricClientTooltipRegistrar.init();
@@ -25,8 +26,7 @@ public class FabricInventoryExpansionClient implements ClientModInitializer {
         FabricItemOverrideRegistrar.init();
         FabricRenderEventRegistrar.init();
         FabricScrollEventRegistrar.init();
-
-        Services.COMPATIBILITY_HELPER.runIfPresent("trinkets", TrinketsCompatClient::init);
+        FabricPacketRegistrar.clientInit();
     }
 
     /**

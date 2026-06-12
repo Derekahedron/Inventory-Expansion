@@ -1,6 +1,6 @@
 package derekahedron.invexp.containeritem;
 
-import derekahedron.invexp.util.ExtraInventoryRegistry;
+import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -119,7 +119,7 @@ public class ContainerItemContentsSelector {
 
                 // Then check for the rest of the inventory
                 Stream<ItemStack> items = Stream.of(
-                        ExtraInventoryRegistry.getExtraInventory(player),
+                        ModdedInventoriesEvent.getItemStacks(player),
                         player.getInventory().items.stream(),
                         player.getInventory().armor.stream(),
                         player.getInventory().offhand.stream()).flatMap(Function.identity());

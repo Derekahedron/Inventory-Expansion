@@ -22,7 +22,6 @@ public class TrinketsCompatClient {
                                 InvExpItems.QUIVER.get(),
                                 new QuiverTrinketRenderer());
                     }
-                }
-        );
+                });
     }
 }
