@@ -18,6 +18,7 @@ public class SackTypes {
     public static final ResourceKey<SackType> STONE = of("stone");
     public static final ResourceKey<SackType> BRICKS = of("bricks");
     public static final ResourceKey<SackType> MUD_BRICKS = of("mud_bricks");
+    public static final ResourceKey<SackType> RESIN_BRICKS = of("resin_bricks");
     public static final ResourceKey<SackType> SANDSTONE = of("sandstone");
     public static final ResourceKey<SackType> PRISMARINE = of("prismarine");
     public static final ResourceKey<SackType> NETHER_BRICKS = of("nether_bricks");
@@ -43,6 +44,7 @@ public class SackTypes {
     public static final ResourceKey<SackType> BAMBOO = of("bamboo");
     public static final ResourceKey<SackType> CHORUS_FRUIT = of("chorus_fruit");
     public static final ResourceKey<SackType> EGG = of("egg");
+    public static final ResourceKey<SackType> DRIED_GHAST = of("dried_ghast");
     public static final ResourceKey<SackType> WHEAT_SEEDS = of("wheat_seeds");
     public static final ResourceKey<SackType> COCOA_BEANS = of("cocoa_beans");
     public static final ResourceKey<SackType> PUMPKIN_SEEDS = of("pumpkin_seeds");
@@ -76,6 +78,7 @@ public class SackTypes {
     public static final ResourceKey<SackType> PAINTING = of("painting");
     public static final ResourceKey<SackType> SIGN = of("sign");
     public static final ResourceKey<SackType> HEAD = of("head");
+    public static final ResourceKey<SackType> COPPER_GOLEM_STATUE = of("copper_golem_statue");
     public static final ResourceKey<SackType> INFESTED_STONE = of("infested_stone");
     public static final ResourceKey<SackType> REDSTONE_COMPONENT = of("redstone_component");
     public static final ResourceKey<SackType> RAIL = of("rail");
@@ -89,8 +92,10 @@ public class SackTypes {
     public static final ResourceKey<SackType> COMPASS = of("compass");
     public static final ResourceKey<SackType> CLOCK = of("clock");
     public static final ResourceKey<SackType> MAP = of("map");
+    public static final ResourceKey<SackType> WIND_CHARGE = of("wind_charge");
     public static final ResourceKey<SackType> FIREWORK_ROCKET = of("firework_rocket");
     public static final ResourceKey<SackType> SADDLE = of("saddle");
+    public static final ResourceKey<SackType> HARNESS = of("harness");
     public static final ResourceKey<SackType> BOAT = of("boat");
     public static final ResourceKey<SackType> GOAT_HORN = of("goat_horn");
     public static final ResourceKey<SackType> MUSIC_DISC = of("music_disc");
@@ -106,6 +111,7 @@ public class SackTypes {
     public static final ResourceKey<SackType> WHEAT = of("wheat");
     public static final ResourceKey<SackType> CREATURE = of("creature");
     public static final ResourceKey<SackType> HEART_OF_THE_SEA = of("heart_of_the_sea");
+    public static final ResourceKey<SackType> HEAVY_CORE = of("heavy_core");
     public static final ResourceKey<SackType> DYE = of("dye");
     public static final ResourceKey<SackType> PAPER = of("paper");
     public static final ResourceKey<SackType> BOOK = of("book");
@@ -146,6 +152,7 @@ public class SackTypes {
         context.register(STONE, new SackType());
         context.register(BRICKS, new SackType());
         context.register(MUD_BRICKS, new SackType());
+        context.register(RESIN_BRICKS, new SackType());
         context.register(SANDSTONE, new SackType());
         context.register(PRISMARINE, new SackType());
         context.register(NETHER_BRICKS, new SackType());
@@ -171,6 +178,7 @@ public class SackTypes {
         context.register(BAMBOO, new SackType());
         context.register(CHORUS_FRUIT, new SackType());
         context.register(EGG, new SackType());
+        context.register(DRIED_GHAST, new SackType());
         context.register(WHEAT_SEEDS, new SackType());
         context.register(COCOA_BEANS, new SackType());
         context.register(PUMPKIN_SEEDS, new SackType());
@@ -204,6 +212,7 @@ public class SackTypes {
         context.register(PAINTING, new SackType());
         context.register(SIGN, new SackType());
         context.register(HEAD, new SackType());
+        context.register(COPPER_GOLEM_STATUE, new SackType());
         context.register(INFESTED_STONE, new SackType());
         context.register(REDSTONE_COMPONENT, new SackType());
         context.register(RAIL, new SackType());
@@ -217,8 +226,10 @@ public class SackTypes {
         context.register(COMPASS, new SackType());
         context.register(CLOCK, new SackType());
         context.register(MAP, new SackType());
+        context.register(WIND_CHARGE, new SackType());
         context.register(FIREWORK_ROCKET, new SackType());
         context.register(SADDLE, new SackType());
+        context.register(HARNESS, new SackType());
         context.register(BOAT, new SackType());
         context.register(GOAT_HORN, new SackType());
         context.register(MUSIC_DISC, new SackType());
@@ -234,6 +245,7 @@ public class SackTypes {
         context.register(WHEAT, new SackType());
         context.register(CREATURE, new SackType());
         context.register(HEART_OF_THE_SEA, new SackType());
+        context.register(HEAVY_CORE, new SackType());
         context.register(DYE, new SackType());
         context.register(PAPER, new SackType());
         context.register(BOOK, new SackType());

@@ -7,6 +7,9 @@
     "#minecraft:wooden_slabs",
     "#minecraft:wooden_fences",
     "#minecraft:fence_gates",
+    "minecraft:bamboo_mosaic",
+    "minecraft:bamboo_mosaic_stairs",
+    "minecraft:bamboo_mosaic_slab",
     "minecraft:mangrove_roots",
     "minecraft:ladder",
     "minecraft:bookshelf",
@@ -15,6 +18,58 @@
     "minecraft:barrel",
     "minecraft:trapped_chest",
     "minecraft:stick",
-    "minecraft:bowl"
+    "minecraft:bowl",
+    {
+      "id": "minecraft:oak_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:spruce_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:birch_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:jungle_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:acacia_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:dark_oak_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:mangrove_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:cherry_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:pale_oak_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:bamboo_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:crimson_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:warped_shelf",
+      "required": false
+    },
+    {
+      "id": "#minecraft:wooden_shelves",
+      "required": false
+    }
   ]
 }

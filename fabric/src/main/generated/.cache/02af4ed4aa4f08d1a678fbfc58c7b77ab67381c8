@@ -1,8 +1,8 @@
-// 1.20.1	2026-05-17T21:03:45.7330925	Inventory Expansion/Sack Weight Rules
-bcdbf15efaceb7c7ab57890ecd2f4454e0b1d1d4 data\invexp\invexp\sack_weight_rule\third.json
-02dfde7b02042f019ce2be19e01f26e290d85d29 data\invexp\invexp\sack_weight_rule\water_bottle.json
-7ea4753d2e8a2c7f8501bbfab5417ba74f746674 data\invexp\invexp\sack_weight_rule\double.json
-ff31ef83bc0be4794487921eac59c170b0859091 data\invexp\invexp\sack_weight_rule\fifth.json
-f25b7ffcb34ae2c93eb845f13b28534d678def47 data\invexp\invexp\sack_weight_rule\fourth.json
-16c0af09e60fa38c73e1a27967d3bb9aab35a042 data\invexp\invexp\sack_weight_rule\half.json
+// 1.20.1	2026-06-14T13:15:44.5713897	Inventory Expansion/Sack Weight Rules
 ff517ec214a66b743d27b7b09f5205fc988d6698 data\invexp\invexp\sack_weight_rule\bees.json
+02dfde7b02042f019ce2be19e01f26e290d85d29 data\invexp\invexp\sack_weight_rule\water_bottle.json
+ff31ef83bc0be4794487921eac59c170b0859091 data\invexp\invexp\sack_weight_rule\fifth.json
+16c0af09e60fa38c73e1a27967d3bb9aab35a042 data\invexp\invexp\sack_weight_rule\half.json
+7ea4753d2e8a2c7f8501bbfab5417ba74f746674 data\invexp\invexp\sack_weight_rule\double.json
+bcdbf15efaceb7c7ab57890ecd2f4454e0b1d1d4 data\invexp\invexp\sack_weight_rule\third.json
+f25b7ffcb34ae2c93eb845f13b28534d678def47 data\invexp\invexp\sack_weight_rule\fourth.json

@@ -1,6 +1,10 @@
 {
   "values": [
     "minecraft:glass_bottle",
-    "minecraft:experience_bottle"
+    "minecraft:experience_bottle",
+    {
+      "id": "minecraft:ominous_bottle",
+      "required": false
+    }
   ]
 }

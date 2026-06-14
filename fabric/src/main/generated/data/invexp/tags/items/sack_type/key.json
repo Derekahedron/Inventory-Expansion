@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "minecraft:trial_key",
+      "required": false
+    },
+    {
+      "id": "minecraft:ominous_trial_key",
+      "required": false
+    }
+  ]
+}

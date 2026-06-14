@@ -28,6 +28,22 @@
     "minecraft:tadpole_bucket",
     "minecraft:lava_bucket",
     "minecraft:powder_snow_bucket",
-    "minecraft:milk_bucket"
+    "minecraft:milk_bucket",
+    {
+      "id": "minecraft:wildflowers",
+      "required": false
+    },
+    {
+      "id": "minecraft:leaf_litter",
+      "required": false
+    },
+    {
+      "id": "minecraft:sulfur_cube_bucket",
+      "required": false
+    },
+    {
+      "id": "minecraft:resin_brick",
+      "required": false
+    }
   ]
 }

@@ -18,6 +18,7 @@
     "minecraft:rabbit_hide",
     "minecraft:ink_sac",
     "minecraft:glow_ink_sac",
+    "minecraft:scute",
     "minecraft:slime_ball",
     "minecraft:prismarine_shard",
     "minecraft:prismarine_crystals",
@@ -31,6 +32,30 @@
     "minecraft:rabbit_foot",
     "minecraft:magma_cream",
     "minecraft:ghast_tear",
-    "minecraft:phantom_membrane"
+    "minecraft:phantom_membrane",
+    {
+      "id": "minecraft:resin_block",
+      "required": false
+    },
+    {
+      "id": "minecraft:resin_clump",
+      "required": false
+    },
+    {
+      "id": "minecraft:turtle_scute",
+      "required": false
+    },
+    {
+      "id": "minecraft:armadillo_scute",
+      "required": false
+    },
+    {
+      "id": "minecraft:breeze_rod",
+      "required": false
+    },
+    {
+      "id": "minecraft:creaking_heart",
+      "required": false
+    }
   ]
 }
