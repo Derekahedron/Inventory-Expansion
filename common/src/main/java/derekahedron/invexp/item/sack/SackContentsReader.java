@@ -25,10 +25,11 @@ public interface SackContentsReader extends ContainerItemContentsReader {
     default boolean canTryInsert(ItemStack stack) {
         if (!stack.getItem().canFitInsideContainerItems()) return false;
 
-        String sackType = getSackType(stack);
-        if (sackType == null) return false;
-
-        return canAddType() || isInTypes(sackType);
+        if (getContainerStack().getItem() instanceof SackItem sackItem) {
+            return sackItem.canTryInsert(this, stack);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -70,7 +71,7 @@ public interface SackContentsReader extends ContainerItemContentsReader {
      */
     default int getMaxStacks() {
         if (getContainerStack().getItem() instanceof SackItem sackItem) {
-            return sackItem.getMaxStacks(getContainerStack());
+            return sackItem.getMaxStacks(this);
         } else {
             return 0;
         }
@@ -83,7 +84,7 @@ public interface SackContentsReader extends ContainerItemContentsReader {
      */
     default int getMaxSackTypes() {
         if (getContainerStack().getItem() instanceof SackItem sackItem) {
-            return sackItem.getMaxSackTypes(getContainerStack());
+            return sackItem.getMaxSackTypes(this);
         } else {
             return 0;
         }
@@ -92,7 +93,7 @@ public interface SackContentsReader extends ContainerItemContentsReader {
     @Override
     default Fraction getMaxWeight() {
         if (getContainerStack().getItem() instanceof SackItem sackItem) {
-            return sackItem.getMaxWeight(getContainerStack());
+            return sackItem.getMaxWeight(this);
         } else {
             return Fraction.ZERO;
         }
@@ -101,7 +102,7 @@ public interface SackContentsReader extends ContainerItemContentsReader {
     @Nullable
     default String getSackType(ItemStack stack) {
         if (getContainerStack().getItem() instanceof SackItem sackItem) {
-            return sackItem.getSackType(getContainerStack(), stack);
+            return sackItem.getSackType(this, stack);
         } else {
             return null;
         }
@@ -110,7 +111,7 @@ public interface SackContentsReader extends ContainerItemContentsReader {
     @Override
     default Fraction getWeight(ItemStack stack) {
         if (getContainerStack().getItem() instanceof SackItem sackItem) {
-            return sackItem.getWeight(getContainerStack(), stack);
+            return sackItem.getWeight(this, stack);
         } else {
             return Fraction.ONE;
         }

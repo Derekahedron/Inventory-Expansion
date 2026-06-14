@@ -4,6 +4,7 @@ import derekahedron.invexp.item.tooltip.QuiverTooltip;
 import derekahedron.invexp.sound.InvExpSoundEvents;
 import derekahedron.invexp.util.InvExpUtil;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.SlotAccess;
@@ -35,36 +36,48 @@ public class QuiverItem extends Item {
     }
 
     /**
+     * Gets if the given stack can be inserted into the stack based on the properties of the stack.
+     *
+     * @param contents the {@link QuiverContentsReader} of the sack
+     * @param stack the {@link ItemStack} to test
+     * @return if a stack can be tried to be inserted
+     */
+    @SuppressWarnings("unused")
+    public boolean canTryInsert(QuiverContentsReader contents, ItemStack stack) {
+        return stack.is(ItemTags.ARROWS);
+    }
+
+    /**
      * Gets how much the given stack weighs.
      *
-     * @param self the ItemStack that contains the quiver
+     * @param contents the {@link QuiverContentsReader} of the quiver
      * @param stack the ItemStack to get the weight of
      * @return what fraction of a stack the given stack takes up
      */
     @SuppressWarnings("unused")
-    public Fraction getWeight(ItemStack self, ItemStack stack) {
+    public Fraction getWeight(QuiverContentsReader contents, ItemStack stack) {
         return Fraction.getFraction(1, stack.getMaxStackSize());
     }
 
     /**
      * Gets the maximum number of mixed stacks of arrows this quiver can hold.
      *
-     * @param self the ItemStack that contains the quiver
+     * @param contents the {@link QuiverContentsReader} of the quiver
      * @return the number of mixed stacks of arrows this quiver can hold
      */
     @SuppressWarnings("unused")
-    public Fraction getMaxWeight(ItemStack self) {
+    public Fraction getMaxWeight(QuiverContentsReader contents) {
         return Fraction.getFraction(8);
     }
 
     /**
      * Gets the maximum number of total separate stacks allowed in this quiver.
      *
-     * @param self the ItemStack that contains the quiver
+     * @param contents the {@link QuiverContentsReader} of the quiver
      * @return the number of total stacks this quiver can hold
      */
     @SuppressWarnings("unused")
-    public int getMaxStacks(ItemStack self) {
+    public int getMaxStacks(QuiverContentsReader contents) {
         return 64;
     }
 

@@ -16,13 +16,21 @@ public interface BundleContentsReader extends ContainerItemContentsReader {
 
     @Override
     default boolean canTryInsert(ItemStack stack) {
-        return stack.getItem().canFitInsideContainerItems();
+        if (!stack.getItem().canFitInsideContainerItems()) return false;
+
+        if (getContainerStack().is(Items.BUNDLE)) {
+            return true;
+        } else if (getContainerStack().getItem() instanceof BetterBundleItem bundleItem) {
+            return bundleItem.canTryInsert(this, stack);
+        } else {
+            return false;
+        }
     }
 
     @Override
     default Fraction getWeight(ItemStack stack) {
         if (getContainerStack().getItem() instanceof BetterBundleItem bundleItem) {
-            return bundleItem.getWeight(getContainerStack(), stack);
+            return bundleItem.getWeight(this, stack);
         } else {
             return Fraction.getFraction(BundleItemInvoker.invexp$callGetWeight(stack), 64);
         }
@@ -42,7 +50,7 @@ public interface BundleContentsReader extends ContainerItemContentsReader {
         if (getContainerStack().is(Items.BUNDLE)) {
             return 64;
         } else if (getContainerStack().getItem() instanceof BetterBundleItem bundleItem) {
-            return bundleItem.getMaxStacks(getContainerStack());
+            return bundleItem.getMaxStacks(this);
         } else {
             return 0;
         }
@@ -53,7 +61,7 @@ public interface BundleContentsReader extends ContainerItemContentsReader {
         if (getContainerStack().is(Items.BUNDLE)) {
             return Fraction.ONE;
         } else if (getContainerStack().getItem() instanceof BetterBundleItem bundleItem) {
-            return bundleItem.getMaxWeight(getContainerStack());
+            return bundleItem.getMaxWeight(this);
         } else {
             return Fraction.ZERO;
         }

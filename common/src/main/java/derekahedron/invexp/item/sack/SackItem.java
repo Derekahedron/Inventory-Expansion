@@ -39,37 +39,51 @@ public class SackItem extends Item {
     }
 
     /**
+     * Gets if the given stack can be inserted into the stack based on the properties of the stack.
+     *
+     * @param contents the {@link SackContentsReader} of the sack
+     * @param stack the {@link ItemStack} to test
+     * @return if a stack can be tried to be inserted
+     */
+    public boolean canTryInsert(SackContentsReader contents, ItemStack stack) {
+        String sackType = contents.getSackType(stack);
+        if (sackType == null) return false;
+
+        return contents.canAddType() || contents.isInTypes(sackType);
+    }
+
+    /**
      * Gets the max sack types that this sack can hold.
      *
-     * @param self the ItemStack that contains the sack
+     * @param contents the {@link SackContentsReader} of the sack
      * @return the number of types this sack can hold
      */
     @SuppressWarnings("unused")
-    public int getMaxSackTypes(ItemStack self) {
+    public int getMaxSackTypes(SackContentsReader contents) {
         return 1;
     }
 
     /**
      * Gets the max weight that this sack can hold.
      *
-     * @param self the ItemStack that contains the sack
+     * @param contents the {@link SackContentsReader} of the sack
      * @return the max weight this sack can hold
      */
     @SuppressWarnings("unused")
-    public Fraction getMaxWeight(ItemStack self) {
+    public Fraction getMaxWeight(SackContentsReader contents) {
         return Fraction.getFraction(4);
     }
 
     /**
      * Gets the type that the given ItemStack should have when in the sack.
      *
-     * @param self the ItemStack that contains the sack
+     * @param contents the {@link SackContentsReader} of the sack
      * @param stack the stack to get the type for
      * @return the SackType that the given stack should have; <code>null</code> if there is none
      */
     @Nullable
     @SuppressWarnings("unused")
-    public String getSackType(ItemStack self, ItemStack stack) {
+    public String getSackType(SackContentsReader contents, ItemStack stack) {
         // Fail if manager is not created before running this
         if (SackRuleManager.getInstance() == null) {
             InventoryExpansion.LOGGER.error(
@@ -85,12 +99,12 @@ public class SackItem extends Item {
     /**
      * Gets the weight that the given ItemStack should use when in the sack.
      *
-     * @param self the ItemStack that contains the sack
+     * @param contents the {@link SackContentsReader} of the sack
      * @param stack the stack to get the weight for
      * @return the weight that the given stack should have
      */
     @SuppressWarnings("unused")
-    public Fraction getWeight(ItemStack self, ItemStack stack) {
+    public Fraction getWeight(SackContentsReader contents, ItemStack stack) {
         // Fail if manager is not created before running this
         if (SackRuleManager.getInstance() == null) {
             InventoryExpansion.LOGGER.error(
@@ -105,11 +119,11 @@ public class SackItem extends Item {
     /**
      * Gets the maximum number of total separate stacks allowed in this sack.
      *
-     * @param self the ItemStack that contains the sack
+     * @param contents the {@link SackContentsReader} of the sack
      * @return the number of total stacks this sack can hold
      */
     @SuppressWarnings("unused")
-    public int getMaxStacks(ItemStack self) {
+    public int getMaxStacks(SackContentsReader contents) {
         return 64;
     }
 

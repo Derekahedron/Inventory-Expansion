@@ -23,36 +23,48 @@ public class BetterBundleItem extends BundleItem {
     }
 
     /**
+     * Gets if the given stack can be inserted into the stack based on the properties of the stack.
+     *
+     * @param contents the {@link BundleContentsReader} of the sack
+     * @param stack the {@link ItemStack} to test
+     * @return if a stack can be tried to be inserted
+     */
+    @SuppressWarnings("unused")
+    public boolean canTryInsert(BundleContentsReader contents, ItemStack stack) {
+        return true;
+    }
+
+    /**
      * Gets how much the given stack weighs.
      *
-     * @param self the ItemStack that contains the bundle
+     * @param contents the {@link BundleContentsReader} of the bundle
      * @param stack the ItemStack to get the weight of
      * @return what fraction of a stack the given stack takes up
      */
     @SuppressWarnings("unused")
-    public Fraction getWeight(ItemStack self, ItemStack stack) {
+    public Fraction getWeight(BundleContentsReader contents, ItemStack stack) {
         return Fraction.getFraction(BundleItemInvoker.invexp$callGetWeight(stack), 64);
     }
 
     /**
      * Gets the maximum number of mixed stacks this bundle can hold.
      *
-     * @param self the ItemStack that contains the bundle
+     * @param contents the {@link BundleContentsReader} of the bundle
      * @return the number of mixed stacks this bundle can hold
      */
     @SuppressWarnings("unused")
-    public Fraction getMaxWeight(ItemStack self) {
+    public Fraction getMaxWeight(BundleContentsReader contents) {
         return Fraction.ONE;
     }
 
     /**
      * Gets the maximum number of total separate stacks allowed in this bundle.
      *
-     * @param self the ItemStack that contains the bundle
+     * @param contents the {@link BundleContentsReader} of the bundle
      * @return the number of total stacks this bundle can hold
      */
     @SuppressWarnings("unused")
-    public int getMaxStacks(ItemStack self) {
+    public int getMaxStacks(BundleContentsReader contents) {
         return 64;
     }
 
