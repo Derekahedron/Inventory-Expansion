@@ -10,6 +10,10 @@
     "minecraft:bamboo_mosaic_slab",
     "minecraft:bamboo_fence",
     "minecraft:bamboo_fence_gate",
-    "minecraft:bamboo"
+    "minecraft:bamboo",
+    {
+      "id": "minecraft:bamboo_shelf",
+      "required": false
+    }
   ]
 }

@@ -37,6 +37,10 @@
     "minecraft:netherite_ingot",
     "minecraft:flint",
     "minecraft:echo_shard",
-    "minecraft:glowstone_dust"
+    "minecraft:glowstone_dust",
+    {
+      "id": "minecraft:copper_nugget",
+      "required": false
+    }
   ]
 }

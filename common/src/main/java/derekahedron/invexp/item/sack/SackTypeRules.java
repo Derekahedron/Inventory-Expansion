@@ -25,6 +25,7 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> STONE = of("stone");
     public static final ResourceKey<SackTypeRule> BRICKS = of("bricks");
     public static final ResourceKey<SackTypeRule> MUD_BRICKS = of("mud_bricks");
+    public static final ResourceKey<SackTypeRule> RESIN_BRICKS = of("resin_bricks");
     public static final ResourceKey<SackTypeRule> SANDSTONE = of("sandstone");
     public static final ResourceKey<SackTypeRule> PRISMARINE = of("prismarine");
     public static final ResourceKey<SackTypeRule> NETHER_BRICKS = of("nether_bricks");
@@ -50,6 +51,7 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> BAMBOO = of("bamboo");
     public static final ResourceKey<SackTypeRule> CHORUS_FRUIT = of("chorus_fruit");
     public static final ResourceKey<SackTypeRule> EGG = of("egg");
+    public static final ResourceKey<SackTypeRule> DRIED_GHAST = of("dried_ghast");
     public static final ResourceKey<SackTypeRule> WHEAT_SEEDS = of("wheat_seeds");
     public static final ResourceKey<SackTypeRule> COCOA_BEANS = of("cocoa_beans");
     public static final ResourceKey<SackTypeRule> PUMPKIN_SEEDS = of("pumpkin_seeds");
@@ -83,6 +85,7 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> PAINTING = of("painting");
     public static final ResourceKey<SackTypeRule> SIGN = of("sign");
     public static final ResourceKey<SackTypeRule> HEAD = of("head");
+    public static final ResourceKey<SackTypeRule> COPPER_GOLEM_STATUE = of("copper_golem_statue");
     public static final ResourceKey<SackTypeRule> INFESTED_STONE = of("infested_stone");
     public static final ResourceKey<SackTypeRule> REDSTONE_COMPONENT = of("redstone_component");
     public static final ResourceKey<SackTypeRule> RAIL = of("rail");
@@ -96,8 +99,10 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> COMPASS = of("compass");
     public static final ResourceKey<SackTypeRule> CLOCK = of("clock");
     public static final ResourceKey<SackTypeRule> MAP = of("map");
+    public static final ResourceKey<SackTypeRule> WIND_CHARGE = of("wind_charge");
     public static final ResourceKey<SackTypeRule> FIREWORK_ROCKET = of("firework_rocket");
     public static final ResourceKey<SackTypeRule> SADDLE = of("saddle");
+    public static final ResourceKey<SackTypeRule> HARNESS = of("harness");
     public static final ResourceKey<SackTypeRule> BOAT = of("boat");
     public static final ResourceKey<SackTypeRule> GOAT_HORN = of("goat_horn");
     public static final ResourceKey<SackTypeRule> MUSIC_DISC = of("music_disc");
@@ -113,6 +118,7 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> WHEAT = of("wheat");
     public static final ResourceKey<SackTypeRule> CREATURE = of("creature");
     public static final ResourceKey<SackTypeRule> HEART_OF_THE_SEA = of("heart_of_the_sea");
+    public static final ResourceKey<SackTypeRule> HEAVY_CORE = of("heavy_core");
     public static final ResourceKey<SackTypeRule> DYE = of("dye");
     public static final ResourceKey<SackTypeRule> PAPER = of("paper");
     public static final ResourceKey<SackTypeRule> BOOK = of("book");
@@ -131,7 +137,6 @@ public class SackTypeRules {
     public static final ResourceKey<SackTypeRule> TROPHY = of("trophy");
 
     // Specific Sack Types
-    public static final ResourceKey<SackTypeRule> BAMBOO_PLANKS = of("bamboo_planks");
     public static final ResourceKey<SackTypeRule> RAW_INFESTED_STONE = of("raw_infested_stone");
     public static final ResourceKey<SackTypeRule> MOSS_BLOCKS = of("moss_blocks");
     public static final ResourceKey<SackTypeRule> WATER_BOTTLE = of("water_bottle");
@@ -149,6 +154,7 @@ public class SackTypeRules {
         context.register(STONE, new SackTypeRule(InvExpItemTags.SackType.STONE, SackTypes.STONE));
         context.register(BRICKS, new SackTypeRule(InvExpItemTags.SackType.BRICKS, SackTypes.BRICKS));
         context.register(MUD_BRICKS, new SackTypeRule(InvExpItemTags.SackType.MUD_BRICKS, SackTypes.MUD_BRICKS));
+        context.register(RESIN_BRICKS, new SackTypeRule(InvExpItemTags.SackType.RESIN_BRICKS, SackTypes.RESIN_BRICKS));
         context.register(SANDSTONE, new SackTypeRule(InvExpItemTags.SackType.SANDSTONE, SackTypes.SANDSTONE));
         context.register(PRISMARINE, new SackTypeRule(InvExpItemTags.SackType.PRISMARINE, SackTypes.PRISMARINE));
         context.register(NETHER_BRICKS, new SackTypeRule(InvExpItemTags.SackType.NETHER_BRICKS, SackTypes.NETHER_BRICKS));
@@ -174,6 +180,7 @@ public class SackTypeRules {
         context.register(BAMBOO, new SackTypeRule(InvExpItemTags.SackType.BAMBOO, SackTypes.BAMBOO));
         context.register(CHORUS_FRUIT, new SackTypeRule(InvExpItemTags.SackType.CHORUS_FRUIT, SackTypes.CHORUS_FRUIT));
         context.register(EGG, new SackTypeRule(InvExpItemTags.SackType.EGG, SackTypes.EGG));
+        context.register(DRIED_GHAST, new SackTypeRule(InvExpItemTags.SackType.DRIED_GHAST, SackTypes.DRIED_GHAST));
         context.register(WHEAT_SEEDS, new SackTypeRule(InvExpItemTags.SackType.WHEAT_SEEDS, SackTypes.WHEAT_SEEDS));
         context.register(COCOA_BEANS, new SackTypeRule(InvExpItemTags.SackType.COCOA_BEANS, SackTypes.COCOA_BEANS));
         context.register(PUMPKIN_SEEDS, new SackTypeRule(InvExpItemTags.SackType.PUMPKIN_SEEDS, SackTypes.PUMPKIN_SEEDS));
@@ -207,6 +214,7 @@ public class SackTypeRules {
         context.register(PAINTING, new SackTypeRule(InvExpItemTags.SackType.PAINTING, SackTypes.PAINTING));
         context.register(SIGN, new SackTypeRule(InvExpItemTags.SackType.SIGN, SackTypes.SIGN));
         context.register(HEAD, new SackTypeRule(InvExpItemTags.SackType.HEAD, SackTypes.HEAD));
+        context.register(COPPER_GOLEM_STATUE, new SackTypeRule(InvExpItemTags.SackType.COPPER_GOLEM_STATUE, SackTypes.COPPER_GOLEM_STATUE));
         context.register(INFESTED_STONE, new SackTypeRule(InvExpItemTags.SackType.INFESTED_STONE, SackTypes.INFESTED_STONE));
         context.register(REDSTONE_COMPONENT, new SackTypeRule(InvExpItemTags.SackType.REDSTONE_COMPONENT, SackTypes.REDSTONE_COMPONENT));
         context.register(RAIL, new SackTypeRule(InvExpItemTags.SackType.RAIL, SackTypes.RAIL));
@@ -220,8 +228,10 @@ public class SackTypeRules {
         context.register(COMPASS, new SackTypeRule(InvExpItemTags.SackType.COMPASS, SackTypes.COMPASS));
         context.register(CLOCK, new SackTypeRule(InvExpItemTags.SackType.CLOCK, SackTypes.CLOCK));
         context.register(MAP, new SackTypeRule(InvExpItemTags.SackType.MAP, SackTypes.MAP));
+        context.register(WIND_CHARGE, new SackTypeRule(InvExpItemTags.SackType.WIND_CHARGE, SackTypes.WIND_CHARGE));
         context.register(FIREWORK_ROCKET, new SackTypeRule(InvExpItemTags.SackType.FIREWORK_ROCKET, SackTypes.FIREWORK_ROCKET));
         context.register(SADDLE, new SackTypeRule(InvExpItemTags.SackType.SADDLE, SackTypes.SADDLE));
+        context.register(HARNESS, new SackTypeRule(InvExpItemTags.SackType.HARNESS, SackTypes.HARNESS));
         context.register(BOAT, new SackTypeRule(InvExpItemTags.SackType.BOAT, SackTypes.BOAT));
         context.register(GOAT_HORN, new SackTypeRule(InvExpItemTags.SackType.GOAT_HORN, SackTypes.GOAT_HORN));
         context.register(MUSIC_DISC, new SackTypeRule(InvExpItemTags.SackType.MUSIC_DISC, SackTypes.MUSIC_DISC));
@@ -237,6 +247,7 @@ public class SackTypeRules {
         context.register(WHEAT, new SackTypeRule(InvExpItemTags.SackType.WHEAT, SackTypes.WHEAT));
         context.register(CREATURE, new SackTypeRule(InvExpItemTags.SackType.CREATURE, SackTypes.CREATURE));
         context.register(HEART_OF_THE_SEA, new SackTypeRule(InvExpItemTags.SackType.HEART_OF_THE_SEA, SackTypes.HEART_OF_THE_SEA));
+        context.register(HEAVY_CORE, new SackTypeRule(InvExpItemTags.SackType.HEAVY_CORE, SackTypes.HEAVY_CORE));
         context.register(DYE, new SackTypeRule(InvExpItemTags.SackType.DYE, SackTypes.DYE));
         context.register(PAPER, new SackTypeRule(InvExpItemTags.SackType.PAPER, SackTypes.PAPER));
         context.register(BOOK, new SackTypeRule(InvExpItemTags.SackType.BOOK, SackTypes.BOOK));
@@ -260,13 +271,6 @@ public class SackTypeRules {
                 Optional.empty()));
 
         // Specific Sack Types
-        context.register(
-                BAMBOO_PLANKS,
-                new SackTypeRule(
-                        10,
-                        Ingredient.of(
-                                Items.BAMBOO_PLANKS, Items.BAMBOO_SLAB, Items.BAMBOO_FENCE, Items.BAMBOO_FENCE_GATE),
-                        SackTypes.BAMBOO));
         context.register(
                 RAW_INFESTED_STONE,
                 new SackTypeRule(

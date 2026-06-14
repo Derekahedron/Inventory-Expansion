@@ -31,8 +31,8 @@ dependencies {
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
 
-    modImplementation group: 'derekahedron.invexpcompat', name: 'invexpcompat', version: "1.0.0"
-    include group: 'derekahedron.invexpcompat', name: 'invexpcompat', version: "1.0.0"
+    modImplementation group: 'derekahedron.invexpcompat', name: "${compat_mod_id}", version: "${compat_version}"
+    include group: 'derekahedron.invexpcompat', name: "${compat_mod_id}", version: "${compat_version}"
 
     modImplementation "curse.maven:trinkets-341284:5173501"
     modApi include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.0")

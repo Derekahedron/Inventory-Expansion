@@ -1,4 +1,4 @@
-// 1.20.1	2026-05-17T00:25:09.614331	Registries
+// 1.20.1	2026-06-14T12:54:48.7840987	Registries
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/armor_stand.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/arrow.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/bamboo.json
@@ -28,10 +28,12 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/command_bl
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/compass.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/concrete.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/concrete_powder.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/copper_golem_statue.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/coral.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/creature.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/crystal_block.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/door.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/dried_ghast.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/dye.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/egg.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/end_crystal.json
@@ -44,8 +46,10 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/fungus.jso
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/glass.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/glow_berries.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/goat_horn.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/harness.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/head.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/heart_of_the_sea.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/heavy_core.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/honey.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/ice.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/infested_stone.json
@@ -83,6 +87,7 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/purpur.jso
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/rail.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/raw_fish.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/redstone_component.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/resin_bricks.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/rope.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/saddle.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/sandstone.json
@@ -106,12 +111,12 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/totem_of_u
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/trophy.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/wheat.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/wheat_seeds.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/wind_charge.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/wood.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/invexp/invexp/sack_type/wool.json
 70791cc6dfbb2d66572a4475ccfcc4a3ce3ab30e data/invexp/invexp/sack_type_rule/armor_stand.json
 a84ff93175ff023ff6672661f92789b97e668c4d data/invexp/invexp/sack_type_rule/arrow.json
 d1d815dcd3929f3b0b6b2e257c15f5a76d882609 data/invexp/invexp/sack_type_rule/bamboo.json
-4dd57dbaad8176e3f8fc33e3f914bcdde55fbe65 data/invexp/invexp/sack_type_rule/bamboo_planks.json
 b4f989aa222184a8514aff320d95172fd090736b data/invexp/invexp/sack_type_rule/banner.json
 e7b485b0ff0e0dfa4acae9d1da742c061990e944 data/invexp/invexp/sack_type_rule/banner_pattern.json
 e9da2f2c91f012d94aa7f66026cbc1ee176f5b25 data/invexp/invexp/sack_type_rule/bed.json
@@ -138,10 +143,12 @@ d25bf1eb655e4d8f5e2f725b33e519e7bac16e9e data/invexp/invexp/sack_type_rule/cobwe
 5bb1e95976c42e04794cc71ce90d6eca5944eaed data/invexp/invexp/sack_type_rule/compass.json
 6b6cec6bff7d3a79aa33d2e04a2e2066ed4328f7 data/invexp/invexp/sack_type_rule/concrete.json
 78a914392dba2ff3eb50d6cd0209f026883c4048 data/invexp/invexp/sack_type_rule/concrete_powder.json
+87adfd07a128d622f3013ff9ecaf0a20f841db98 data/invexp/invexp/sack_type_rule/copper_golem_statue.json
 c66e8ec7d4368ac8b177ca6b369e86e829ac3b48 data/invexp/invexp/sack_type_rule/coral.json
 747205c0c0136fc4630a0eaf49ec9a1c20b43d22 data/invexp/invexp/sack_type_rule/creature.json
 bde08626e53bc4a63ded1be0874ce80671da3130 data/invexp/invexp/sack_type_rule/crystal_block.json
 621dfb5537df9b5e93396b8dfc9baa8294eb1cbb data/invexp/invexp/sack_type_rule/door.json
+f6b0c63ae317374d23c2e7df6ad34afaa8ca4f2b data/invexp/invexp/sack_type_rule/dried_ghast.json
 ae34d24dd61ae121d3bcf4c898813832e02b7150 data/invexp/invexp/sack_type_rule/dye.json
 a0858966b301b9bcb6db7857a3f9b8959c75ae11 data/invexp/invexp/sack_type_rule/egg.json
 e30293f84cdb2ee4d6cfae387c142f25aad22242 data/invexp/invexp/sack_type_rule/end_crystal.json
@@ -154,8 +161,10 @@ f6bf763c2d404717398a474306d6b1e0c4c6cfdd data/invexp/invexp/sack_type_rule/firew
 0ad9fc5d3158796c01d963c3bf8f346a3ffd3f29 data/invexp/invexp/sack_type_rule/glass.json
 bda14fb7818b78f71bb591c595448f210608b3cd data/invexp/invexp/sack_type_rule/glow_berries.json
 dfe5f9ca1d27c09c6e11e7da5b30ebf83d0c0997 data/invexp/invexp/sack_type_rule/goat_horn.json
+b8a802b253137bf6282d4089609655e83a865906 data/invexp/invexp/sack_type_rule/harness.json
 cacda6004d2f31db0ce8a7199d82bc03910fd88d data/invexp/invexp/sack_type_rule/head.json
 7859050c448d1be2a5040d0216b6664878653526 data/invexp/invexp/sack_type_rule/heart_of_the_sea.json
+17604ebe934cffc60ff2081297cc099ca8263433 data/invexp/invexp/sack_type_rule/heavy_core.json
 7b8d17b64b49d90d2a5c842a59f6ed8146f7523e data/invexp/invexp/sack_type_rule/honey.json
 7e3de12b9d1661d47b23aa7104acaafcebd07ee7 data/invexp/invexp/sack_type_rule/ice.json
 c6d61e595002a41649f455a53ea3531b0e423d07 data/invexp/invexp/sack_type_rule/infested_stone.json
@@ -196,6 +205,7 @@ e5f270dec375f67fefdd7bf9e3bef82481981070 data/invexp/invexp/sack_type_rule/rail.
 81e91cff43c788e96574e3c970b1be34fe60423c data/invexp/invexp/sack_type_rule/raw_fish.json
 d70ec92ee973a43ef74c74ae4a58a92311554f59 data/invexp/invexp/sack_type_rule/raw_infested_stone.json
 49e0c6f5ae9d974a6f5f907c503c33a4b5594ca8 data/invexp/invexp/sack_type_rule/redstone_component.json
+985165ed0b3e06f85ca27177d4ee2f83c1705f83 data/invexp/invexp/sack_type_rule/resin_bricks.json
 29dfff85e66010cdd9755c572ebbcb0cdde87521 data/invexp/invexp/sack_type_rule/rope.json
 c7f15f3ccb83e5f683e824f74c58296c75a56182 data/invexp/invexp/sack_type_rule/saddle.json
 76c26ea4328ccafc6f5fda45e770e0e3aa5e3d72 data/invexp/invexp/sack_type_rule/sandstone.json
@@ -220,6 +230,7 @@ e208c4b6cf97b178a0d352177053f63478d2fdb1 data/invexp/invexp/sack_type_rule/troph
 2e73a15601134e39e100b388983241cbccb6321f data/invexp/invexp/sack_type_rule/water_bottle.json
 581cf86debce4d3918bb4fc87005def7daba0555 data/invexp/invexp/sack_type_rule/wheat.json
 1b87e9f9ecc6277e123fc74b5be926513ade02e0 data/invexp/invexp/sack_type_rule/wheat_seeds.json
+4e4ebd1154697453659d45daab5b80fd44807590 data/invexp/invexp/sack_type_rule/wind_charge.json
 eb1e9c46cdb039651fd01b9d870f74cd1bd76d8a data/invexp/invexp/sack_type_rule/wood.json
 901312a0b3aae6d0e63f143ebdb3d0c37b828755 data/invexp/invexp/sack_type_rule/wool.json
 ff517ec214a66b743d27b7b09f5205fc988d6698 data/invexp/invexp/sack_weight_rule/bees.json

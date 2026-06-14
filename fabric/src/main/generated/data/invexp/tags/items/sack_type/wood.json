@@ -16,6 +16,10 @@
     "minecraft:barrel",
     "minecraft:trapped_chest",
     "minecraft:stick",
-    "minecraft:bowl"
+    "minecraft:bowl",
+    {
+      "id": "#minecraft:wooden_shelves",
+      "required": false
+    }
   ]
 }

@@ -67,8 +67,8 @@ dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
-    implementation group: 'local.dependencies', name: 'invexpcompat', version: compat_version
-    jarJar(group: 'local.dependencies', name: 'invexpcompat', version: compat_version)
+    implementation group: 'local.dependencies', name: "${compat_mod_id}", version: "${compat_version}"
+    jarJar(group: 'local.dependencies', name: "${compat_mod_id}", version: "${compat_version}")
 
     modImplementation "curse.maven:curios-309927:6418456"
 }

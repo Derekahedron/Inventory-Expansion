@@ -17,6 +17,8 @@ public class InvExpItemTags {
     public static final TagKey<Item> BUNDLES = of("bundles");
     public static final TagKey<Item> DYEABLE_BUNDLES = of("dyeable_bundles");
 
+    public static final TagKey<Item> BANNER_PATTERNS = of("banner_patterns");
+
     /**
      * Creates a new <code>TagKey</code> for Inventory Expansion items.
      *
@@ -40,6 +42,7 @@ public class InvExpItemTags {
         public static final TagKey<Item> STONE = of(SackTypes.STONE);
         public static final TagKey<Item> BRICKS = of(SackTypes.BRICKS);
         public static final TagKey<Item> MUD_BRICKS = of(SackTypes.MUD_BRICKS);
+        public static final TagKey<Item> RESIN_BRICKS = of(SackTypes.RESIN_BRICKS);
         public static final TagKey<Item> SANDSTONE = of(SackTypes.SANDSTONE);
         public static final TagKey<Item> PRISMARINE = of(SackTypes.PRISMARINE);
         public static final TagKey<Item> NETHER_BRICKS = of(SackTypes.NETHER_BRICKS);
@@ -65,6 +68,7 @@ public class InvExpItemTags {
         public static final TagKey<Item> BAMBOO = of(SackTypes.BAMBOO);
         public static final TagKey<Item> CHORUS_FRUIT = of(SackTypes.CHORUS_FRUIT);
         public static final TagKey<Item> EGG = of(SackTypes.EGG);
+        public static final TagKey<Item> DRIED_GHAST = of(SackTypes.DRIED_GHAST);
         public static final TagKey<Item> WHEAT_SEEDS = of(SackTypes.WHEAT_SEEDS);
         public static final TagKey<Item> COCOA_BEANS = of(SackTypes.COCOA_BEANS);
         public static final TagKey<Item> PUMPKIN_SEEDS = of(SackTypes.PUMPKIN_SEEDS);
@@ -98,6 +102,7 @@ public class InvExpItemTags {
         public static final TagKey<Item> PAINTING = of(SackTypes.PAINTING);
         public static final TagKey<Item> SIGN = of(SackTypes.SIGN);
         public static final TagKey<Item> HEAD = of(SackTypes.HEAD);
+        public static final TagKey<Item> COPPER_GOLEM_STATUE = of(SackTypes.COPPER_GOLEM_STATUE);
         public static final TagKey<Item> INFESTED_STONE = of(SackTypes.INFESTED_STONE);
         public static final TagKey<Item> REDSTONE_COMPONENT = of(SackTypes.REDSTONE_COMPONENT);
         public static final TagKey<Item> RAIL = of(SackTypes.RAIL);
@@ -111,8 +116,10 @@ public class InvExpItemTags {
         public static final TagKey<Item> COMPASS = of(SackTypes.COMPASS);
         public static final TagKey<Item> CLOCK = of(SackTypes.CLOCK);
         public static final TagKey<Item> MAP = of(SackTypes.MAP);
+        public static final TagKey<Item> WIND_CHARGE = of(SackTypes.WIND_CHARGE);
         public static final TagKey<Item> FIREWORK_ROCKET = of(SackTypes.FIREWORK_ROCKET);
         public static final TagKey<Item> SADDLE = of(SackTypes.SADDLE);
+        public static final TagKey<Item> HARNESS = of(SackTypes.HARNESS);
         public static final TagKey<Item> BOAT = of(SackTypes.BOAT);
         public static final TagKey<Item> GOAT_HORN = of(SackTypes.GOAT_HORN);
         public static final TagKey<Item> MUSIC_DISC = of(SackTypes.MUSIC_DISC);
@@ -128,6 +135,7 @@ public class InvExpItemTags {
         public static final TagKey<Item> WHEAT = of(SackTypes.WHEAT);
         public static final TagKey<Item> CREATURE = of(SackTypes.CREATURE);
         public static final TagKey<Item> HEART_OF_THE_SEA = of(SackTypes.HEART_OF_THE_SEA);
+        public static final TagKey<Item> HEAVY_CORE = of(SackTypes.HEAVY_CORE);
         public static final TagKey<Item> DYE = of(SackTypes.DYE);
         public static final TagKey<Item> PAPER = of(SackTypes.PAPER);
         public static final TagKey<Item> BOOK = of(SackTypes.BOOK);

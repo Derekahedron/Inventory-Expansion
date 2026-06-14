@@ -4,6 +4,18 @@
     "minecraft:turtle_egg",
     "minecraft:sniffer_egg",
     "minecraft:dragon_egg",
-    "minecraft:egg"
+    "minecraft:egg",
+    {
+      "id": "minecraft:brown_egg",
+      "required": false
+    },
+    {
+      "id": "minecraft:blue_egg",
+      "required": false
+    },
+    {
+      "id": "#minecraft:eggs",
+      "required": false
+    }
   ]
 }

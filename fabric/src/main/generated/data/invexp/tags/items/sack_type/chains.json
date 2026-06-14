@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "minecraft:chain"
+    "minecraft:chain",
+    {
+      "id": "#minecraft:chains",
+      "required": false
+    }
   ]
 }
