@@ -2,6 +2,7 @@ package derekahedron.invexp.item.bundle;
 
 import derekahedron.invexp.InventoryExpansion;
 import derekahedron.invexp.containeritem.ContainerItemContents;
+import derekahedron.invexp.item.ItemStackDuck;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
@@ -73,6 +74,7 @@ public class BundleContents implements ContainerItemContents {
         if (isEmpty()) {
             stack.removeTagKey(ITEMS_KEY);
             stack.removeTagKey(COMPOUND_KEY);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(null);
         } else {
             CompoundTag tag = stack.getOrCreateTag();
             CompoundTag bundleContentsTag = new CompoundTag();
@@ -100,6 +102,7 @@ public class BundleContents implements ContainerItemContents {
             }
 
             tag.put(COMPOUND_KEY, bundleContentsTag);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(this);
         }
     }
 
@@ -110,6 +113,10 @@ public class BundleContents implements ContainerItemContents {
      * @return the bundle contents component attached to the stack
      */
     public static BundleContents getComponent(ItemStack stack) {
+        if (((ItemStackDuck) (Object) stack).invexp$getCachedContents() instanceof BundleContents contents) {
+            return contents;
+        }
+
         CompoundTag tag = stack.getTag();
 
         // Ensure there is an existing Bundle Tag
@@ -148,7 +155,10 @@ public class BundleContents implements ContainerItemContents {
             }
         }
 
-        return new BundleContents(stacks, selectedIndex, totalWeight);
+        BundleContents contents = new BundleContents(stacks, selectedIndex, totalWeight);
+        //noinspection DataFlowIssue
+        ((ItemStackDuck) (Object) stack).invexp$setCachedContents(contents);
+        return contents;
     }
 
     /**

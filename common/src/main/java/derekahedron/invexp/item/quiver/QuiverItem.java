@@ -16,7 +16,6 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.level.Level;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
@@ -214,17 +213,6 @@ public class QuiverItem extends Item {
         if (contents == null || contents.isEmpty()) return;
 
         ItemUtils.onContainerDestroyed(entity, contents.popAllStacks().stream());
-    }
-
-    @Override
-    public void inventoryTick(ItemStack quiverStack, Level level, Entity entity, int slot, boolean selected) {
-        if (entity instanceof Player player) {
-            QuiverContentsWriter contents = QuiverContentsWriter.of(quiverStack);
-            if (contents == null) {
-                return;
-            }
-            contents.validate(player);
-        }
     }
 
     /**

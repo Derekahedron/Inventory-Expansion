@@ -4,13 +4,11 @@ import derekahedron.invexp.containeritem.ContainerItemContentsWriter;
 import derekahedron.invexp.containeritem.InsertableContents;
 import derekahedron.invexp.containeritem.UsableContents;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.math.Fraction;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -39,76 +37,6 @@ public class SackContentsWriter extends ContainerItemContentsWriter implements S
         if (stack == null || !SackContents.hasSackContents(stack.getItem())) return null;
         SackContents component = SackContents.getComponent(stack);
         return new SackContentsWriter(stack, component);
-    }
-
-    /**
-     * Checks if the given contents are valid. Does so by checking that each item can be added,
-     * plus making sure that the weights and stacks are not over the max amount.
-     *
-     * @return <code>true</code> if the contents are valid; <code>false</code> otherwise
-     */
-    public boolean isValid() {
-        if (getTotalWeight().compareTo(computeTotalWeight()) != 0) return false;
-
-        if (!getStacks().stream().allMatch(this::canTryInsert)) return false;
-
-        // Because references can be decentralized, we use identifiers to check for type equality
-        HashSet<String> sackTypesInSack = new HashSet<>();
-        HashSet<String> sackTypes = new HashSet<>(getSackTypes());
-        for (ItemStack stack : getStacks()) {
-
-            // Make sure type exists and is in component
-            String sackType = getSackType(stack);
-            if (sackType != null) {
-                if (!sackTypes.contains(sackType)) {
-                    return false;
-                }
-                sackTypesInSack.add(sackType);
-            } else {
-                return false;
-            }
-        }
-
-        if (!sackTypes.equals(sackTypesInSack)) return false;
-
-        if (getSackTypes().size() > getMaxSackTypes()) return false;
-
-        if (getTotalWeight().compareTo(getMaxWeight()) > 0) return false;
-
-        return getStacks().size() <= getMaxStacks();
-    }
-
-    /**
-     * Checks if the contents are valid. If they are not, create a new SackContentsWriter
-     * and add each item one by one. Leftover stacks are given to the player after the validation.
-     *
-     * @param player player holding the bundle
-     */
-    public void validate(Player player) {
-        if (isValid()) return;
-
-        List<ItemStack> removedStacks = new ArrayList<>(getStacks().size());
-        SackContentsWriter newContents = new SackContentsWriter(
-                containerStack,
-                new SackContents());
-        Builder builder = newContents.getBuilder();
-        for (int i = getStacks().size() - 1; i >= 0; i--) {
-            ItemStack stack = getStacks().get(i).copy();
-            builder.add(stack, 0);
-
-            if (!stack.isEmpty()) {
-                removedStacks.add(stack);
-            }
-        }
-
-        builder.selectedIndex = builder.nextSelectedIndex(getSelectedStack(), getSelectedIndex());
-        builder.apply();
-        component = newContents.component;
-        for (ItemStack stack : removedStacks) {
-            if (!player.getInventory().add(stack)) {
-                player.drop(stack, false);
-            }
-        }
     }
 
     @Override

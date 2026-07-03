@@ -29,11 +29,14 @@ public class ContainerItemBehaviors {
      * @return the contents that the given stack has attached
      */
     public static Optional<ContainerItemContentsWriter> getContents(ItemStack stack) {
-        return BEHAVIORS.stream()
-                .map(behavior -> behavior.getContents(stack))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .findFirst();
+        for (ContainerItemBehavior behavior : BEHAVIORS) {
+            Optional<ContainerItemContentsWriter> contents = behavior.getContents(stack);
+
+            if (contents.isPresent()) {
+                return contents;
+            }
+        }
+        return Optional.empty();
     }
 
     /**

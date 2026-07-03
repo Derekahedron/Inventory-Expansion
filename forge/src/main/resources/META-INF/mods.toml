@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "${mod_name}"
 
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional (see https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/)
-displayURL="https://github.com/Derekahedron/Inventory-Expansion/"
+displayURL="https://github.com/Derekahedron/Inventory-Expansion"
 logoFile = "assets/${mod_id}/icon.png"
 logoBlur = false
 credits = "This mod is dedicated to my fiancée"

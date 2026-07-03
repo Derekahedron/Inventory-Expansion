@@ -1,6 +1,7 @@
 package derekahedron.invexp.mixin;
 
 import derekahedron.invexp.InventoryExpansion;
+import derekahedron.invexp.containeritem.ContainerItemContents;
 import derekahedron.invexp.item.ItemStackDuck;
 import derekahedron.invexp.containeritem.ContainerItemContentsWriter;
 import net.minecraft.world.item.ItemStack;
@@ -10,6 +11,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 
@@ -26,9 +28,24 @@ public abstract class ItemStackMixin implements ItemStackDuck {
     @Nullable
     private ContainerItemContentsWriter invexp$containerItemContents;
 
+    @Unique
+    @Nullable
+    private ContainerItemContents invexp$cachedContents;
+
     @Override
     public void invexp$setContainerItemContents(@Nullable ContainerItemContentsWriter contents) {
         this.invexp$containerItemContents = contents;
+    }
+
+    @Override
+    public void invexp$setCachedContents(@Nullable ContainerItemContents cachedContents) {
+        this.invexp$cachedContents = cachedContents;
+    }
+
+    @Override
+    @Nullable
+    public ContainerItemContents invexp$getCachedContents() {
+        return this.invexp$cachedContents;
     }
 
     /**
@@ -47,6 +64,18 @@ public abstract class ItemStackMixin implements ItemStackDuck {
         } else if (countDiff > 0) {
             InventoryExpansion.LOGGER.warn(
                     "Container ItemStack count increased unexpectedly! Potential loss of items");
+        }
+    }
+
+    @Inject(
+            method = "copy",
+            at = @At("RETURN"))
+    private void copyCachedContents(CallbackInfoReturnable<ItemStack> cir) {
+        if (invexp$cachedContents == null) return;
+
+        ItemStack stack = cir.getReturnValue();
+        if (stack != null && !stack.isEmpty()) {
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(invexp$cachedContents);
         }
     }
 }

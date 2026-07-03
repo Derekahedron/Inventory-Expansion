@@ -4,11 +4,8 @@ import derekahedron.invexp.mixin.BundleItemInvoker;
 import derekahedron.invexp.util.OpenItemTexturesRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Optional;
@@ -66,15 +63,6 @@ public class BetterBundleItem extends BundleItem {
     @SuppressWarnings("unused")
     public int getMaxStacks(BundleContentsReader contents) {
         return 64;
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        if (entity instanceof Player player) {
-            BundleContentsWriter contents = BundleContentsWriter.of(stack);
-            if (contents == null) return;
-            contents.validate(player);
-        }
     }
 
     @Override

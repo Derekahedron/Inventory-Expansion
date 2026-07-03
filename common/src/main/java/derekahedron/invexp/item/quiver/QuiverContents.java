@@ -2,6 +2,7 @@ package derekahedron.invexp.item.quiver;
 
 import derekahedron.invexp.InventoryExpansion;
 import derekahedron.invexp.containeritem.ContainerItemContents;
+import derekahedron.invexp.item.ItemStackDuck;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
@@ -81,6 +82,7 @@ public class QuiverContents implements ContainerItemContents {
     public void setComponent(ItemStack stack) {
         if (isEmpty()) {
             stack.removeTagKey(COMPOUND_KEY);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(null);
         } else {
             CompoundTag quiverContentsTag = new CompoundTag();
 
@@ -106,6 +108,7 @@ public class QuiverContents implements ContainerItemContents {
 
             CompoundTag tag = stack.getOrCreateTag();
             tag.put(COMPOUND_KEY, quiverContentsTag);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(this);
         }
     }
 
@@ -116,6 +119,10 @@ public class QuiverContents implements ContainerItemContents {
      * @return the quiver contents component attached to the stack
      */
     public static QuiverContents getComponent(ItemStack stack) {
+        if (((ItemStackDuck) (Object) stack).invexp$getCachedContents() instanceof QuiverContents contents) {
+            return contents;
+        }
+
         // Ensure there is an existing Sack Tag
         CompoundTag tag = stack.getTag();
         if (tag == null || !tag.contains(COMPOUND_KEY)) return new QuiverContents();
@@ -147,7 +154,10 @@ public class QuiverContents implements ContainerItemContents {
             }
         }
 
-        return new QuiverContents(stacks, selectedIndex, totalWeight);
+        QuiverContents contents = new QuiverContents(stacks, selectedIndex, totalWeight);
+        //noinspection DataFlowIssue
+        ((ItemStackDuck) (Object) stack).invexp$setCachedContents(contents);
+        return contents;
     }
 
     /**

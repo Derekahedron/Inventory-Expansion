@@ -3,6 +3,7 @@ package derekahedron.invexp.item.sack;
 import derekahedron.invexp.item.InvExpItemTags;
 import derekahedron.invexp.registry.InvExpRegistryKeys;
 import derekahedron.invexp.util.InvExpUtil;
+import net.minecraft.Util;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.nbt.CompoundTag;
@@ -38,6 +39,7 @@ public class SackWeightRules {
      *
      * @param context the context to apply the rules to
      */
+    @SuppressWarnings("CodeBlock2Expr")
     public static void bootstrap(BootstapContext<SackWeightRule> context) {
 
         context.register(DOUBLE, new SackWeightRule(InvExpItemTags.SackWeight.DOUBLE, Fraction.getFraction(2)));
@@ -51,7 +53,17 @@ public class SackWeightRules {
                 new SackWeightRule(
                         Optional.of(10),
                         Optional.of(Ingredient.of(Items.BEEHIVE, Items.BEE_NEST)),
-                        Optional.of(ItemPredicate.Builder.item().hasNbt(getBeesTag()).build()),
+                        Optional.of(ItemPredicate.Builder.item().hasNbt(Util.make(new CompoundTag(), tag -> {
+                            tag.put("BlockEntityTag", Util.make(new CompoundTag(), blockEntityTag -> {
+                                blockEntityTag.put("Bees", Util.make(new ListTag(), beesTag -> {
+                                    beesTag.add(Util.make(new CompoundTag(), beeTag -> {
+                                        beeTag.put("EntityData", Util.make(new CompoundTag(), entityDataTag -> {
+                                            entityDataTag.putString("id", "minecraft:bee");
+                                        }));
+                                    }));
+                                }));
+                            }));
+                        })).build()),
                         Optional.of(Fraction.getFraction(64))));
         context.register(
                 POTION,
@@ -60,24 +72,5 @@ public class SackWeightRules {
                         Optional.of(Ingredient.of(Items.POTION)),
                         Optional.of(ItemPredicate.Builder.item().isPotion(Potions.WATER).build()),
                         Optional.of(Fraction.ONE_QUARTER)));
-    }
-
-    /**
-     * Create a tag that can be used to test if a hive has bees.
-     *
-     * @return the tag with bees in it
-     */
-    public static CompoundTag getBeesTag() {
-        CompoundTag entityData = new CompoundTag();
-        entityData.putString("id", "minecraft:bee");
-        CompoundTag bee = new CompoundTag();
-        bee.put("EntityData", entityData);
-        ListTag bees = new ListTag();
-        bees.add(bee);
-        CompoundTag blockEntityTag = new CompoundTag();
-        blockEntityTag.put("Bees", bees);
-        CompoundTag tag = new CompoundTag();
-        tag.put("BlockEntityTag", blockEntityTag);
-        return tag;
     }
 }

@@ -264,12 +264,9 @@ public class SackItem extends Item {
     public void inventoryTick(ItemStack sackStack, Level level, Entity entity, int slot, boolean selected) {
         if (entity instanceof Player player) {
             SackContentsWriter contents = SackContentsWriter.of(sackStack);
-            if (contents == null) return;
-            contents.validate(player);
+            if (contents == null || contents.isEmpty()) return;
 
-            // After contents are validated, try ticking the selected stack
-            if (contents.isEmpty()) return;
-
+            // Tick the selected stack
             ItemStack selectedStack = contents.copySelectedStack();
             selectedStack.getItem().inventoryTick(selectedStack, level, entity, slot, selected);
             contents.updateSelectedStack(selectedStack, leftoverStack -> {

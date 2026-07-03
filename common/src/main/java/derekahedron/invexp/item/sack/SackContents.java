@@ -2,6 +2,7 @@ package derekahedron.invexp.item.sack;
 
 import derekahedron.invexp.InventoryExpansion;
 import derekahedron.invexp.containeritem.ContainerItemContents;
+import derekahedron.invexp.item.ItemStackDuck;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -86,6 +87,7 @@ public class SackContents implements ContainerItemContents {
     public void setComponent(ItemStack stack) {
         if (isEmpty()) {
             stack.removeTagKey(COMPOUND_KEY);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(null);
         } else {
             CompoundTag sackContentsTag = new CompoundTag();
 
@@ -118,6 +120,7 @@ public class SackContents implements ContainerItemContents {
 
             CompoundTag tag = stack.getOrCreateTag();
             tag.put(COMPOUND_KEY, sackContentsTag);
+            ((ItemStackDuck) (Object) stack).invexp$setCachedContents(this);
         }
     }
 
@@ -128,6 +131,10 @@ public class SackContents implements ContainerItemContents {
      * @return the sack contents component attached to the stack
      */
     public static SackContents getComponent(ItemStack stack) {
+        if (((ItemStackDuck) (Object) stack).invexp$getCachedContents() instanceof SackContents contents) {
+            return contents;
+        }
+
         // Ensure there is an existing Sack Tag
         CompoundTag tag = stack.getTag();
         if (tag == null || !tag.contains(COMPOUND_KEY)) return new SackContents();
@@ -164,7 +171,10 @@ public class SackContents implements ContainerItemContents {
             }
         }
 
-        return new SackContents(sackTypes, stacks, selectedIndex, totalWeight);
+        SackContents contents = new SackContents(sackTypes, stacks, selectedIndex, totalWeight);
+        //noinspection DataFlowIssue
+        ((ItemStackDuck) (Object) stack).invexp$setCachedContents(contents);
+        return contents;
     }
 
     /**
