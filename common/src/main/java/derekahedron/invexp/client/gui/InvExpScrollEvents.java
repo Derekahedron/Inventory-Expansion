@@ -77,9 +77,12 @@ public class InvExpScrollEvents {
                 }
             }
 
-            contents.setSelectedIndex(newSelectedIndex);
-            InvExpClientUtil.getHandler(slot, player).setSelectedIndex(newSelectedIndex);
-            return false;
+            if (InvExpClientUtil.sendSetSelectedIndexPacket(player, slot, newSelectedIndex)) {
+                contents.setSelectedIndex(newSelectedIndex);
+                return false;
+            }
+
+            return true;
         });
     }
 }

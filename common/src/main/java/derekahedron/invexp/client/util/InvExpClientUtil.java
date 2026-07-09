@@ -6,6 +6,7 @@ import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,45 +16,70 @@ import net.minecraft.world.item.ItemStack;
 public class InvExpClientUtil {
 
     /**
-     * Gets the selected index handler for a given slot and a given player.
+     * Sends an update packet for updating the selected index of an item in a slot.
      *
-     * @param slot the slot to get the handler for
-     * @param player the player to get the handler for
-     * @return a slot handler for setting the selected index of the given slot
+     * @param player the player to update the index of
+     * @param slot the slot to update the index for
+     * @param selectedIndex the selected index to update
+     * @return <code>true</code> if the selected index was updated; <code>false</code> otherwise
      */
-    public static ModdedInventoriesEvent.SelectedIndexSlotHandler getHandler(Slot slot, Player player) {
-        ItemStack stack = slot.getItem();
+    public static boolean sendSetSelectedIndexPacket(Player player, Slot slot, int selectedIndex) {
+        if (player.containerMenu instanceof CreativeModeInventoryScreen.ItemPickerMenu) {
+            return sendSetSelectedIndexPacket(player, slot.getItem(), selectedIndex);
+        } else if (sendModdedSetSelectedIndexPacket(player, slot.getItem(), selectedIndex)) {
+            return true;
+        } else {
+            Services.NETWORK_HANDLER.sendC2S(new SetSelectedIndexPacket(slot.index, selectedIndex));
+            return true;
+        }
+    }
+
+    /**
+     * Sends an update packet for updating the selected index of an item in the players modded inventory.
+     *
+     * @param player the player to update the index of
+     * @param stack the stack to update the index of
+     * @param selectedIndex the selected index to update
+     * @return <code>true</code> if the selected index was updated; <code>false</code> otherwise
+     */
+    public static boolean sendModdedSetSelectedIndexPacket(Player player, ItemStack stack, int selectedIndex) {
         ModdedInventoriesEvent.SelectedIndexSlotHandler handler = ModdedInventoriesEvent.getHandlers(player)
                 .filter(h -> h.getStack() == stack)
                 .findFirst()
                 .orElse(null);
 
-        if (handler != null) return handler;
-
-        int slotId;
-        // The creative menu has slots that are desynced from the inventory menu, so we have to search the basic
-        // inventory menu instead.
-        if (player.containerMenu instanceof CreativeModeInventoryScreen.ItemPickerMenu) {
-            slotId = player.inventoryMenu.slots.stream()
-                    .filter(s -> s.getItem() == stack)
-                    .map(s -> s.index)
-                    .findFirst()
-                    .orElse(slot.index);
+        if (handler != null) {
+            handler.setSelectedIndex(selectedIndex);
+            return true;
         } else {
-            slotId = slot.index;
+            return false;
+        }
+    }
+
+    /**
+     * Sends an update packet for updating the selected index of an item in the players inventory.
+     *
+     * @param player the player to update the index of
+     * @param stack the stack to update the index of
+     * @param selectedIndex the selected index to update
+     * @return <code>true</code> if the selected index was updated; <code>false</code> otherwise
+     */
+    public static boolean sendSetSelectedIndexPacket(Player player, ItemStack stack, int selectedIndex) {
+        if (sendModdedSetSelectedIndexPacket(player, stack, selectedIndex)) return true;
+
+        AbstractContainerMenu menu = player.containerMenu;
+        if (menu instanceof CreativeModeInventoryScreen.ItemPickerMenu) {
+            menu = player.inventoryMenu;
         }
 
-        return new ModdedInventoriesEvent.SelectedIndexSlotHandler() {
-            @Override
-            public ItemStack getStack() {
-                return stack;
+        for (Slot slot : menu.slots) {
+            if (slot.getItem() == stack) {
+                Services.NETWORK_HANDLER.sendC2S(new SetSelectedIndexPacket(slot.index, selectedIndex));
+                return true;
             }
+        }
 
-            @Override
-            public void setSelectedIndex(int selectedIndex) {
-                Services.NETWORK_HANDLER.sendC2S(new SetSelectedIndexPacket(slotId, selectedIndex));
-            }
-        };
+        return false;
     }
 
     /**

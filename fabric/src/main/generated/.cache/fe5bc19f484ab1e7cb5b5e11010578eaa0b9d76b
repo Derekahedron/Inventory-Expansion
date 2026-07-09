@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-14T13:15:44.5683921	Inventory Expansion/Sack Types
+// 1.20.1	2026-07-08T21:57:57.8257418	Inventory Expansion/Sack Types
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\sign.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bricks.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bottle.json
@@ -32,22 +32,22 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\boat.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wheat_seeds.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\froglight.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\end_crystal.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\concrete_powder.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bedrock.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\harness.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\concrete_powder.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\potato.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\purpur.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\harness.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\coral.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\purpur.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\ore.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\pottery_sherd.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\kelp.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\fire_charge.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\pottery_sherd.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\banner.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\item_frame.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\metal_block.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\resin_bricks.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wool.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\dye.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wool.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\goat_horn.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bone_block.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bed.json
@@ -68,8 +68,8 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\carrot.jso
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\torch.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\spawn_egg.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\name_tag.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bamboo.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bone_meal.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bamboo.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bell.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\map.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\lantern.json
@@ -92,8 +92,8 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wind_charg
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\heart_of_the_sea.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\nether_bricks.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\button.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\music_disc.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\concrete.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\music_disc.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\heavy_core.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\infested_stone.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\chorus_fruit.json
@@ -104,8 +104,8 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\compass.js
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\arrow.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\pumpkin_seeds.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\painting.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wood.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\rope.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\wood.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\dried_ghast.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\creature.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data\invexp\invexp\sack_type\bucket.json

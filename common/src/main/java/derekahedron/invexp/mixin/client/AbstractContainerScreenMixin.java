@@ -303,9 +303,9 @@ public abstract class AbstractContainerScreenMixin {
 
             if (contents != null
                     && !contents.isEmpty()
-                    && contents.getSelectedIndex() != -1) {
+                    && contents.getSelectedIndex() != -1
+                    && InvExpClientUtil.sendSetSelectedIndexPacket(minecraft.player, invexp$hoveredBundleSlot, -1)) {
                 contents.setSelectedIndex(-1);
-                InvExpClientUtil.getHandler(invexp$hoveredBundleSlot, minecraft.player).setSelectedIndex(-1);
             }
         }
 

@@ -1,21 +1,16 @@
 package derekahedron.invexp.mixin.client;
 
+import derekahedron.invexp.client.util.InvExpClientUtil;
 import derekahedron.invexp.client.util.QuickSwapHandler;
 import derekahedron.invexp.containeritem.ContainerItemContentsSelector;
 import derekahedron.invexp.client.util.Scroller;
-import derekahedron.invexp.network.SetSelectedIndexPacket;
-import derekahedron.invexp.platform.Services;
-import derekahedron.invexp.util.ModdedInventoriesEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
-import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-
-import java.util.stream.Stream;
 
 @Mixin(MouseHandler.class)
 public class MouseHandlerMixin {
@@ -58,30 +53,12 @@ public class MouseHandlerMixin {
                 selector.compressedStacks.get(newIndex),
                 selector.contents.getSelectedIndex());
 
-        ModdedInventoriesEvent.SelectedIndexSlotHandler handler = Stream.concat(
-                        ModdedInventoriesEvent.getHandlers(minecraft.player),
-                        minecraft.player.containerMenu.slots.stream()
-                                .map(slot -> new ModdedInventoriesEvent.SelectedIndexSlotHandler() {
-                                    @Override
-                                    public ItemStack getStack() {
-                                        return slot.getItem();
-                                    }
-
-                                    @Override
-                                    public void setSelectedIndex(int selectedIndex) {
-                                        Services.NETWORK_HANDLER.sendC2S(new SetSelectedIndexPacket(slot.index, selectedIndex));
-                                    }
-                                }))
-                .filter(h -> h.getStack() == selector.contents.getContainerStack())
-                .findFirst()
-                .orElse(null);
-
-        if (handler == null) {
-            return 0;
+        if (InvExpClientUtil.sendSetSelectedIndexPacket(minecraft.player, selector.contents.getContainerStack(), newSelectedIndex)) {
+            selector.contents.setSelectedIndex(newSelectedIndex);
+        } else {
+            return direction;
         }
 
-        selector.contents.setSelectedIndex(newSelectedIndex);
-        handler.setSelectedIndex(newSelectedIndex);
         return 0;
     }
 }

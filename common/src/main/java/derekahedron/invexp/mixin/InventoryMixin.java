@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -121,30 +122,21 @@ public abstract class InventoryMixin {
         }
     }
 
-    @Inject(
-            method = "findSlotMatchingItem",
-            at = @At("HEAD"),
-            cancellable = true)
-    private void getSelectedSlotWithStackInContainerItem(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        ContainerItemBehaviors.getUsableContents(items.get(selected))
-                .filter(contents -> ItemStack.isSameItemSameTags(stack, contents.getSelectedStack()))
-                .ifPresent(contents -> cir.setReturnValue(selected));
-    }
-
     /**
-     * After getting a slot with the stack fails, try again but instead check
-     * for sacks with the stack in their contents.
+     * Gets an item slot with the container item containing a picked item in creative mode.
      */
-    @Inject(
-            method = "findSlotMatchingItem",
-            at = @At("RETURN"),
-            cancellable = true)
-    private void getSlotWithStackInContainerItem(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        if (cir.getReturnValue() != -1) return;
-        // We want to prioritize sacks that already have the item selected, but if we find one that
-        // doesn't, we store it here.
-        int backupSlot = -1;
-        int newSelectedIndex = -1;
+    @ModifyVariable(
+            method = "setPickedItem",
+            at = @At("STORE"),
+            ordinal = 0)
+    private int getAlternateSlot(int i, ItemStack stack) {
+        if (ContainerItemBehaviors.getUsableContents(items.get(selected))
+                .filter(contents -> ItemStack.isSameItemSameTags(stack, contents.getSelectedStack()))
+                .isPresent()) {
+            return selected;
+        }
+
+        if (i != -1) return i;
 
         for (int slot = 0; slot < items.size(); slot++) {
             ContainerItemContentsReader contents = ContainerItemBehaviors.getUsableContents(items.get(slot))
@@ -153,27 +145,11 @@ public abstract class InventoryMixin {
             if (contents != null && !contents.isEmpty()) {
                 if (ItemStack.isSameItemSameTags(stack, contents.getSelectedStack())) {
                     // Find first sack that has the item selected already
-                    cir.setReturnValue(slot);
-                    return;
-                } else if (backupSlot == -1) {
-                    // Otherwise, if a backup hasn't been found, test if the item is in the stack
-                    newSelectedIndex = contents.indexOf(stack, contents.getSelectedIndex());
-                    if (newSelectedIndex != -1) {
-                        backupSlot = slot;
-                    }
+                    return slot;
                 }
             }
         }
 
-        // If there is a backup, set the selected index of that backup and return the slot.
-        if (backupSlot != -1) {
-            ContainerItemContentsWriter contents = ContainerItemBehaviors.getUsableContents(items.get(backupSlot))
-                    .orElse(null);
-
-            if (contents != null) {
-                contents.setSelectedIndex(newSelectedIndex);
-                cir.setReturnValue(backupSlot);
-            }
-        }
+        return i;
     }
 }

@@ -30,6 +30,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
+    compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1")
 
     modImplementation group: 'derekahedron.invexpcompat', name: "${compat_mod_id}", version: "${compat_version}"
     include group: 'derekahedron.invexpcompat', name: "${compat_mod_id}", version: "${compat_version}"

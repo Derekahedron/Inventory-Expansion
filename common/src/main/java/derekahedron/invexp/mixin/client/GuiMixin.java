@@ -148,6 +148,8 @@ public class GuiMixin {
 
         if (!QuickSwapHandler.buttonPressed) {
             QuickSwapHandler.blockScrolling = false;
+        } else {
+            InvExpKeyMappings.QUICK_SWAP.consumeClick();
         }
     }
 
