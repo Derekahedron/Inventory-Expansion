@@ -1,5 +1,6 @@
 package derekahedron.invexp.mixin;
 
+import derekahedron.invexp.item.ItemStackDuck;
 import derekahedron.invexp.item.bundle.BetterBundleItem;
 import derekahedron.invexp.item.bundle.BundleContents;
 import derekahedron.invexp.item.bundle.BundleContentsWriter;
@@ -185,6 +186,16 @@ public abstract class BundleItemMixin {
         } else {
             cir.setReturnValue(Optional.empty());
         }
+    }
+
+    /**
+     * Clear cached contents when dropping.
+     */
+    @Inject(
+            method = "dropContents",
+            at = @At("RETURN"))
+    private static void clearContents(ItemStack stack, Player player, CallbackInfoReturnable<Boolean> cir) {
+        ((ItemStackDuck) (Object) stack).invexp$setCachedContents(null);
     }
 
     @Inject(
