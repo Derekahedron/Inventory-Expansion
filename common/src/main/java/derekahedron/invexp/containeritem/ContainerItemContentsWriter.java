@@ -344,6 +344,8 @@ public abstract class ContainerItemContentsWriter implements ContainerItemConten
          * @return the number of items added
          */
         public int add(ItemStack stack, int insertAt) {
+            // Hard check for not duplicating items
+            if (getContainerStack().getCount() > 1) return 0;
             if (!canTryInsert(stack)) return 0;
 
             Fraction weight = getWeight(stack);

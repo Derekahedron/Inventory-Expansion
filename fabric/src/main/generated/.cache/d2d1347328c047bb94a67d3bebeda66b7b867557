@@ -1,4 +1,4 @@
-// 1.20.1	2026-07-08T21:57:57.8307453	Inventory Expansion/Tags for minecraft:item
+// 1.20.1	2026-08-17T21:33:48.543637	Inventory Expansion/Tags for minecraft:item
 1efa2c1088a5e7d20c1cb753f80cbc36a62bb00c data\invexp\tags\items\sack_type\wheat.json
 0d613e5fa5f9c60f7c8f7d8613b676b42077903a data\invexp\tags\items\sack_weight\fifth.json
 dbc2b8740207a6dd5600e0aa0754f0f8b6cb63f6 data\invexp\tags\items\sack_type\snow.json
@@ -53,11 +53,11 @@ d263403139e37ddef2ba57bfc7c7a6881c917a5f data\invexp\tags\items\sack_type\music_
 8ca5ee2116885465e931093c18579d64e4ed59e9 data\invexp\tags\items\sack_type\door.json
 6e91d68e5a5daff6ff5d7464a7a70d2eff20eca1 data\invexp\tags\items\sack_type\totem_of_undying.json
 2ea4889d0983ba53bd63b46a0c93c23ef7127e19 data\invexp\tags\items\sack_type\bed.json
-101cbe435a60d880b4793b6e589444e873947b98 data\invexp\tags\items\sack_type\concrete.json
 aed8e5381cd1e722842d63e9d044d646d5564cee data\invexp\tags\items\sack_type\firework_rocket.json
+101cbe435a60d880b4793b6e589444e873947b98 data\invexp\tags\items\sack_type\concrete.json
 baa63465bbc0014d25a50c804e9c4b01497f0094 data\invexp\tags\items\sack_type\sugar.json
-c9fb8e895c647279579aa6aa67aa2a65292d081d data\invexp\tags\items\sack_type\name_tag.json
 0b6b319f8e29eb390ec991b678da54045470aae5 data\invexp\tags\items\sack_type\lead.json
+c9fb8e895c647279579aa6aa67aa2a65292d081d data\invexp\tags\items\sack_type\name_tag.json
 f0b9d157e3b67386ea5979c2c9df9065d3525248 data\invexp\tags\items\sack_type\candle.json
 4a8724ce8da7d85fe2f9b0c7af28c08f727650ab data\invexp\tags\items\sack_type\pressure_plate.json
 6e91d68e5a5daff6ff5d7464a7a70d2eff20eca1 data\invexp\tags\items\sack_weight\double.json
@@ -107,9 +107,9 @@ f7d61aec0ff78508967871aa0a64a9367064fcdf data\invexp\tags\items\sack_type\end_cr
 e143a048ba566cfc6a1891e3efb923480eb30ccb data\invexp\tags\items\sack_type\sweet_berries.json
 fc1f5a3577e91dcc16dc0404cdad43b2d7ff1542 data\invexp\tags\items\sack_type\froglight.json
 fb5e6879e92044f3b7548f00e5a1b8bf687e1011 data\invexp\tags\items\sack_type\chorus_fruit.json
-8b2b1ca34efd5d461ffe1cd4875dcbaf063fb615 data\invexp\tags\items\sack_type\saddle.json
 43bb5b6ed5a90be71a9597c5ba79dcb106054705 data\invexp\tags\items\sack_type\compass.json
 8e41446e4a1664d5a11064dfa90ec26cb79fc989 data\invexp\tags\items\sack_type\bucket.json
+8b2b1ca34efd5d461ffe1cd4875dcbaf063fb615 data\invexp\tags\items\sack_type\saddle.json
 d26faaded425b707fff0417643ef3c5aaf63120c data\invexp\tags\items\sack_type\terracotta.json
 f8c753886f3ff74d8e81d024e1d392c14b8578af data\invexp\tags\items\sack_type\bell.json
 8b812c309682fee200a197a0331ae609d35a4d81 data\invexp\tags\items\sack_type\map.json

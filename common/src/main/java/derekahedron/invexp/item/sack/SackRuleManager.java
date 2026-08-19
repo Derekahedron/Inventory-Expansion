@@ -1,7 +1,7 @@
 package derekahedron.invexp.item.sack;
 
 import derekahedron.invexp.item.ItemDuck;
-import derekahedron.invexp.mixin.BucketItemAccessor;
+import derekahedron.invexp.platform.Services;
 import derekahedron.invexp.registry.InvExpRegistryKeys;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
@@ -137,7 +137,7 @@ public class SackRuleManager {
 
         // Default buckets to 1/4th sack weight
         if (stack.getItem() instanceof BucketItem bucketItem
-                && !((BucketItemAccessor) bucketItem).invexp$getContent().isSame(Fluids.EMPTY)) {
+                && !Services.GAMEPLAY_HOOKS.getFluid(bucketItem).isSame(Fluids.EMPTY)) {
             return Fraction.ONE_QUARTER;
         }
         return Fraction.ONE;
