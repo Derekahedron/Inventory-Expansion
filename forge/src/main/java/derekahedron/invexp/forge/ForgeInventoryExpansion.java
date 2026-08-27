@@ -9,6 +9,7 @@ import derekahedron.invexp.forge.platform.*;
 import derekahedron.invexp.platform.Services;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -36,7 +37,7 @@ public class ForgeInventoryExpansion {
 
         modEventBus.addListener(ForgeRegistryRegistrar::init);
         modEventBus.addListener(ForgePacketRegistrar::init);
-        MinecraftForge.EVENT_BUS.addListener(ForgeRegistryEventRegistrar::init);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, ForgeRegistryEventRegistrar::init);
         modEventBus.addListener(ForgeCreativeItemsRegistrar::init);
 
         InventoryExpansion.init();

@@ -6,10 +6,8 @@ import derekahedron.invexp.registry.InvExpRegistryKeys;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
 import org.apache.commons.lang3.math.Fraction;
 
@@ -62,7 +60,8 @@ public class SackRuleManager {
 
         for (Holder.Reference<SackTypeRule> typeRule : typeRules) {
             typeRule.value().items().ifPresent((items) -> {
-                for (ItemStack itemStack : items.getItems()) {
+                // We load to/from json here to clear the stored item stacks on the Ingredient
+                for (ItemStack itemStack : Ingredient.fromJson(items.toJson()).getItems()) {
                     getOrCreateSackRules(itemStack.getItem()).typeRules.add(typeRule);
                 }
             });
@@ -70,7 +69,7 @@ public class SackRuleManager {
 
         for (Holder.Reference<SackWeightRule> weightRule : weightRules) {
             weightRule.value().items().ifPresent((items) -> {
-                for (ItemStack itemStack : items.getItems()) {
+                for (ItemStack itemStack : Ingredient.fromJson(items.toJson()).getItems()) {
                     getOrCreateSackRules(itemStack.getItem()).weightRules.add(weightRule);
                 }
             });
